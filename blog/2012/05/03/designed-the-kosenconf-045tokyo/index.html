@@ -1,0 +1,180 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>高専カンファレンスin東京の設計 - mitaku.log</title>
+	<meta name="author" content="Takumi MIURA">
+
+	
+	<meta name="description" content="高専カンファレンスin東京の設計 4月14日に高専カンファレンスin東京の設計の話 環境 今回は参加者登録から開催まで省エネでやりたかったのでWebサービスを立ち上げました。 (モノを作ってる時間はちょいちょいかかってるので本当に省エネかというと怪しいですが) Ruby 1.9.3
+Rails &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="mitaku.log" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://mitaku.github.com/blog/2012/05/03/designed-the-kosenconf-045tokyo/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		document.write("<img src='http://www.gravatar.com/avatar/" + MD5("mitaku1104@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;'");
+	</script>
+</div>
+<h1><a href="/">mitaku.log</a></h1>
+<p class="subtitle"></p>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/mitaku" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/mitaku" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">高専カンファレンスin東京の設計</h1>
+	<div class="entry-content" itemprop="articleBody"><p>4月14日に<a href="http://kc045tokyo.heroku.com">高専カンファレンスin東京</a>の設計の話</p>
+
+<h2>環境</h2>
+
+<p>今回は参加者登録から開催まで省エネでやりたかったのでWebサービスを立ち上げました。</p>
+
+<p>(モノを作ってる時間はちょいちょいかかってるので本当に省エネかというと怪しいですが)</p>
+
+<ul>
+<li>Ruby 1.9.3</li>
+<li>Rails 3.2.2</li>
+<li>Heroku</li>
+<li>Twitter-Bootstrap</li>
+<li>Twitterアカウントによる認証</li>
+</ul>
+
+
+<h2>設計 - design</h2>
+
+<ul>
+<li>今回は開催コンセプトとして全員発表という形をとっていたので発表者を選定する必要がない</li>
+<li>発表者とのやりとりを極力減らしたい</li>
+<li>発表タイトルの変更</li>
+<li>資料の送付</li>
+<li>etc&#8230;</li>
+<li>参加者間を繋げたい</li>
+<li>開始から終了までをカバーしたい</li>
+<li>参加後のブログエントリーのリンク (できなかったけど)</li>
+<li>発表スライドのリンク(できなかったけど)</li>
+</ul>
+
+
+<p>基本的な告知手段がTwitterになるので<strong>Twitterアカウント</strong>でログインできるようにしよう</p>
+
+<h3>カバーしないもの</h3>
+
+<ul>
+<li>受付の効率化</li>
+<li>人数が少ないので、そこまで手間じゃない</li>
+<li>お金のやり取り</li>
+<li>紙とペンがやっぱり万能</li>
+</ul>
+
+
+<h2>作成 - create</h2>
+
+<h2>改善 - brushup</h2>
+
+<h2>設計 - design</h2>
+
+<h2>作成 - create</h2>
+
+<h2>おわりに</h2>
+
+<p><code>design =&gt; create =&gt; brushup</code></p>
+
+<p>ということで次は今回見えた課題と、やれなかったことを形にしたいですね</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Takumi MIURA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
