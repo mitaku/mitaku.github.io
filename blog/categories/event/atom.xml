@@ -4,7 +4,7 @@
   <title><![CDATA[Category: event | mitaku.log]]></title>
   <link href="http://mitaku.github.com/blog/categories/event/atom.xml" rel="self"/>
   <link href="http://mitaku.github.com/"/>
-  <updated>2013-06-27T23:45:53+09:00</updated>
+  <updated>2014-01-01T00:47:36+09:00</updated>
   <id>http://mitaku.github.com/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails寺子屋 x kosenconfを開催した]]></title>
+    <link href="http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf/"/>
+    <updated>2013-03-27T22:38:00+09:00</updated>
+    <id>http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf</id>
+    <content type="html"><![CDATA[<p>2013/03/23に<a href="http://rails.terakoya.io/">Rails寺子屋</a>というイベントを開催し、講師という立場で参加した。</p>
+
+<p>午前10時という時間から開始ということで、寝坊だったり、遠方からの参加者は朝から東京に投げ出され大変そうだった印象。</p>
+
+<p>あと、鉄道のICカード統一で駅が大変なことになっていた。速い人は5時くらいから並んでいるとか…</p>
+
+<p>さて、寺子屋ですが</p>
+
+<p>@RooandQoo ちゃんと一緒に1グループ担当しました。この日のために服装を揃えました（嘘です）</p>
+
+<p><a href="http://www.flickr.com/photos/sora_h/8583674262/" title="P3233335 by sora_h, on Flickr"><img src="http://farm9.staticflickr.com/8509/8583674262_aab196bc06_z.jpg" width="640" height="480" alt="P3233335"></a></p>
+
+<h3>午前</h3>
+
+<p>午前中は環境構築をする時間として設けていて環境構築をしつつ、終わったメンバーと対談したりRubyで簡単なプログラムを書いてみたりしてました。</p>
+
+<ul>
+<li>RubyでFizzBuzzしてみたり</li>
+</ul>
+
+
+<p><code>ruby
+puts 100.times.map { |i| (s = ((i % 3).zero? ? 'Fizz' : '') + ((i % 5).zero? ? 'Buzz' : '')).empty? ? i : s }
+</code>
+&ndash; 与えた文字をランダムで利用して140文字の文字列を作る遊びなど (下の例ではsを与える文字にしてます)</p>
+
+<p><code>ruby
+s = "みうらたくみ"
+puts 140.times.map { s.chars.sample }.join
+</code></p>
+
+<h3>午後</h3>
+
+<p>ワークショップのメインということでRailsを使って簡単なアプリケーションを作ってみようというコーナーでした
+ここでは<a href="http://railsgirls-jp.github.com/">Rails Girls</a>というイベントの教材を使って、<a href="http://www.heroku.com/">Heroku</a>にアプリケーションをデプロイするところまでやりました。</p>
+
+<p>まずは、この教材の出来がとてもよい。</p>
+
+<p>反日でRailsアプリを1つ作り、Herokuにデプロイし1サービスの提供者になれる。</p>
+
+<p>基本的に教材にそってやっていき、都度必要な説明を講師陣で加えていくという形で行なって行きました。</p>
+
+<p>無事全員がHerokuにデプロイするところまで行きました。素敵</p>
+
+<h3>懇親会</h3>
+
+<p>みんなでピザを頬張り、ワイワイしてました。</p>
+
+<h3>感想</h3>
+
+<p>Rails Girlsの教材はとてもよい。</p>
+
+<p>Railsの手軽さは体験してもらうことはできたと思う。</p>
+
+<p>ただし、学習コストが高いRailsなのでアフターサポート的なものがあるとよいのかなぁと思いました。</p>
+
+<p>気軽に<a href="https://twitter.com/mitaku">@mitaku</a>までどうぞ！</p>
+
+<p>参加者のみなさん、講師の皆さん、たくさんの関係者のみなさんありがとうございました！</p>
+
+<p><em>楽しいRailsライフを!!</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[高専カンファレンスin東京を開催した]]></title>

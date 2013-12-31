@@ -1,0 +1,204 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rails4でのRSpec自動実行環境の作成 - mitaku.log</title>
+	<meta name="author" content="Takumi MIURA">
+
+	
+	<meta name="description" content="Rails4でのRSpec自動実行環境の作成 Rails4アプリでファイルの変更を検知し、RSpecを実行するようにする。
+テストの結果はGrowlにて通知するようにする 環境 Ruby 2.0.0
+Rails 4.0.0
+Mac OS X 10.8 利用するもの Rspec &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="mitaku.log" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://mitaku.github.com/blog/2013/07/10/rails4-testing-automation/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		document.write("<img src='http://www.gravatar.com/avatar/" + MD5("mitaku1104@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;'");
+	</script>
+</div>
+<h1><a href="/">mitaku.log</a></h1>
+<p class="subtitle"></p>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/mitaku" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/mitaku" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Rails4でのRSpec自動実行環境の作成</h1>
+	<div class="entry-content" itemprop="articleBody"><p>Rails4アプリでファイルの変更を検知し、RSpecを実行するようにする。
+テストの結果はGrowlにて通知するようにする</p>
+
+<h2>環境</h2>
+
+<ul>
+<li>Ruby 2.0.0</li>
+<li>Rails 4.0.0</li>
+<li>Mac OS X 10.8</li>
+</ul>
+
+
+<h2>利用するもの</h2>
+
+<ul>
+<li>Rspec</li>
+<li>BDDフレームワーク</li>
+<li>Guard</li>
+<li>監視・実行の管理</li>
+<li>Growl</li>
+<li>通知</li>
+<li>Spring</li>
+<li>事前にアプリを立て、コマンドの実行を高速化する</li>
+</ul>
+
+
+<h2>準備</h2>
+
+<h3>Gemfileの更新</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;guard&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;guard-rspec&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;growl&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>bundle install</code></p>
+
+<h3>rspec:install</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">spring</span> <span class="n">g</span> <span class="ss">rspec</span><span class="p">:</span><span class="n">install</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>spec/spec_helper.rb</code>などが作成される</p>
+
+<h3>guard init</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gurad</span> <span class="n">init</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>Guardfile</code>というGuardの設定を記述するファイルが生成される</p>
+
+<h3>guard rspecでspringを使うようにする</h3>
+
+<p><code>guard :rspec do</code>という記述を<code>guard :rspec, spring: true do</code>に変更する
+これによってguardでrspecが動く場合にspringで立てたテスト用のプロセスで実行されるようになる</p>
+
+<p>基本的に作業はこれだけ。
+あとはファイルを更新してテストが走ったり、通知がいくことを確認できれば問題なし。</p>
+
+<p>かなり簡単に自動でテストが回る環境が作れた。
+無意識にテストが実行されフィードバックが返ってくるのはとてもよい。</p>
+
+<p>Rails4が出たということで<code>database_cleaner</code>を始め開発環境を再度整えて行きたい</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Takumi MIURA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

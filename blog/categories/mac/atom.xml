@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mac | mitaku.log]]></title>
+  <link href="http://mitaku.github.com/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://mitaku.github.com/"/>
+  <updated>2014-01-01T00:47:36+09:00</updated>
+  <id>http://mitaku.github.com/</id>
+  <author>
+    <name><![CDATA[Takumi MIURA]]></name>
+    <email><![CDATA[mitaku1104@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[クリップボードを有効にしたVimを使う]]></title>
+    <link href="http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard/"/>
+    <updated>2013-07-06T18:26:00+09:00</updated>
+    <id>http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard</id>
+    <content type="html"><![CDATA[<p>MacのVimは初期状態でclipboardが有効になっていなくて辛いのでvimからclipboardが使えるようにする
+<code>
+vim --version |grep clipboard
+</code></p>
+
+<p>結果
+<code>
+-clientserver -clipboard +cmdline_compl +cmdline_hist +cmdline_info +comments
+ -xterm_clipboard -xterm_save
+</code></p>
+
+<p>現時点ではHomebrewのVimのFormulaはclipboardに対するオプションがないみたいなのでMercurialからソースを持ってきて対応する</p>
+
+<h2>1. hgコマンドを使えるようにする</h2>
+
+<p><code>
+brew install hg
+</code></p>
+
+<h2>2. vimをinstall</h2>
+
+<p><code>
+hg clone https://vim.googlecode.com/hg/ /tmp/vim
+cd /tmp/vim
+make clean
+./configure --prefix=/usr/local --enable-multibyte --enable-xim --enable-fontset --enable-rubyinterp --enable-perlinterp --with-features=huge --disable-selinux
+make
+make install
+</code></p>
+
+<h2>3. 確認</h2>
+
+<p><code>
+/usr/local/vim --version |grep clipboard
+</code></p>
+
+<p><code>+clipboard</code>が含まれていればOK</p>
+
+<p>configureに与えるものは各自必要なものを指定すること</p>
+]]></content>
+  </entry>
+  
+</feed>
