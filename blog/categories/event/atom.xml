@@ -4,7 +4,7 @@
   <title><![CDATA[Category: event | mitaku.log]]></title>
   <link href="http://mitaku.github.com/blog/categories/event/atom.xml" rel="self"/>
   <link href="http://mitaku.github.com/"/>
-  <updated>2014-09-23T01:03:18+09:00</updated>
+  <updated>2014-09-23T01:14:56+09:00</updated>
   <id>http://mitaku.github.com/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
@@ -39,15 +39,17 @@
 </ul>
 
 
-<p><code>ruby
-puts 100.times.map { |i| (s = ((i % 3).zero? ? 'Fizz' : '') + ((i % 5).zero? ? 'Buzz' : '')).empty? ? i : s }
-</code>
-&ndash; 与えた文字をランダムで利用して140文字の文字列を作る遊びなど (下の例ではsを与える文字にしてます)</p>
+<pre><code class="ruby">puts 100.times.map { |i| (s = ((i % 3).zero? ? 'Fizz' : '') + ((i % 5).zero? ? 'Buzz' : '')).empty? ? i : s }
+</code></pre>
 
-<p><code>ruby
-s = "みうらたくみ"
+<ul>
+<li>与えた文字をランダムで利用して140文字の文字列を作る遊びなど (下の例ではsを与える文字にしてます)</li>
+</ul>
+
+
+<pre><code class="ruby">s = "みうらたくみ"
 puts 140.times.map { s.chars.sample }.join
-</code></p>
+</code></pre>
 
 <h3>午後</h3>
 
@@ -189,7 +191,7 @@ puts 140.times.map { s.chars.sample }.join
 
 <p>「あの開催ではこうだったのにこの開催はこれがないからダメだ。」
 別に言われてもいいけど、そこまで過度に求められても困ります←
-ボクの高専カンファレンスには"お客様"は存在しないので、
+ボクの高専カンファレンスには&#8221;お客様&#8221;は存在しないので、
 よりよくする方向には持っていきますが利害や費用対効果をみて考えます。</p>
 
 <p>今回申し込みサイトを作ったのですが、それもボクが怠け者なのであーいう形にしました。（バグいっぱいなの知ってるんだよ)

@@ -1,63 +1,118 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>http://mitaku.github.com/blog/2012/05/03/held-the-kosenconf-045tokyo/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/03/17/hatena-blog-rss-feed/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/03/18/why-why-why-ruby/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/06/27/present-kosenconf-5th-anniversary/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/07/07/generate-rails4-app/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/07/08/installed-ricty/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/07/10/rails4-testing-automation/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2013/07/15/retired-from-optim/</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2014/01/01/retrospective-2013/</loc>
-        <lastmod>2014-01-01T01:38:52+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech/</loc>
-        <lastmod>2014-09-23T01:03:14+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/blog/archives/</loc>
-        <lastmod>2014-09-23T01:03:14+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/</loc>
-        <lastmod>2014-09-23T01:03:14+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://mitaku.github.com/robots.txt</loc>
-        <lastmod>2014-01-01T00:54:40+09:00</lastmod>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech/</loc>
+    
+    <lastmod>2014-09-22T22:42:12+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2014/01/01/retrospective-2013/</loc>
+    
+    <lastmod>2014-01-01T00:58:42+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/07/15/retired-from-optim/</loc>
+    
+    <lastmod>2013-07-15T10:36:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/07/10/rails4-testing-automation/</loc>
+    
+    <lastmod>2013-07-10T00:15:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/07/08/installed-ricty/</loc>
+    
+    <lastmod>2013-07-08T19:01:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/07/07/generate-rails4-app/</loc>
+    
+    <lastmod>2013-07-07T01:29:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard/</loc>
+    
+    <lastmod>2013-07-06T18:26:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/06/27/present-kosenconf-5th-anniversary/</loc>
+    
+    <lastmod>2013-06-27T15:53:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf/</loc>
+    
+    <lastmod>2013-03-27T22:38:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/03/18/why-why-why-ruby/</loc>
+    
+    <lastmod>2013-03-18T00:17:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2013/03/17/hatena-blog-rss-feed/</loc>
+    
+    <lastmod>2013-03-17T21:39:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/2012/05/03/held-the-kosenconf-045tokyo/</loc>
+    
+    <lastmod>2012-05-03T16:31:00+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://mitaku.github.com/blog/archives/</loc>
+    <lastmod>2014-09-23T01:14:56+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://mitaku.github.com/</loc>
+    <lastmod>2014-09-23T01:14:56+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  
+  
 </urlset>
