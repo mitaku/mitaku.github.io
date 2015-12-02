@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ruby | mitaku.log]]></title>
-  <link href="http://mitaku.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <title><![CDATA[Category: gem | mitaku.log]]></title>
+  <link href="http://mitaku.github.com/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://mitaku.github.com/"/>
   <updated>2015-12-02T10:15:24+09:00</updated>
   <id>http://mitaku.github.com/</id>
@@ -167,119 +167,6 @@ end
 
 
 <p>ということで次はnakajiさんです!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RubyKaigi2014で発表した]]></title>
-    <link href="http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech/"/>
-    <updated>2014-09-22T22:42:12+09:00</updated>
-    <id>http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech</id>
-    <content type="html"><![CDATA[<p>RubyKaigi 2014めっちゃいいKaigiだった。</p>
-
-<h2>初めての発表</h2>
-
-<p>今回初めてSpeakerとしてRubyKaigiに参加した。</p>
-
-<p><a href="http://rubykaigi.org/2014/presentation/S-TakumiMiura">発表者情報</a></p>
-
-<h3>感想</h3>
-
-<p>めっちゃ緊張した。</p>
-
-<p>でも会議っぽい(?)写真取りたかったので、こんなことをしてみたり</p>
-
-<p><img src="http://photos-d.ak.instagram.com/hphotos-ak-xfa1/10654988_1524824864402355_142010473_n.jpg" alt="photo" /></p>
-
-<p>セミインターナショナルなKaigiということで発表自体は日本語だったけれどもスライドは英語にしようと思ってせっせと準備をしました。</p>
-
-<p>結構なスライドの枚数になってしまい通訳の方が大変だったんじゃないかとすごく思う。
-また、RubyKaigiのスタッフの方々がスライドチェックなどをしてくれて少しはまともな資料になりました！</p>
-
-<p>通訳の方、スタッフのみなさんありがとうございました!</p>
-
-<h3>スライド</h3>
-
-<script async class="speakerdeck-embed" data-id="ed2e4fa0221e0132318076af556e37c5" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<h2>&ldquo;Gem of this Week&rdquo; - building culture and making gem</h2>
-
-<p>というタイトルで発表をした。</p>
-
-<p>内容は僕が転職をして1年かけてカジュアルにgemを作るチームを作ってきた話。</p>
-
-<p><strong>今週のgem</strong>というコーナーで毎週のようにgemが更新されたり作成されていく環境を見せることができるようになったのでgemを作ることが<strong>特別</strong>じゃなくしました。</p>
-
-<p>その結果チームメンバーがカジュアルにgemを作るようになった。</p>
-
-<h4>想い</h4>
-
-<p>今週のgemを初めた時の想いとしては</p>
-
-<ul>
-<li>もっと楽したい。</li>
-<li>楽しいことをしていたい。</li>
-<li>同じことを繰り返したくない。</li>
-</ul>
-
-
-<p>だった。</p>
-
-<p>発表することになった時に
-同じように共通化して社内gemみたいなの作って楽になる人たちはいっぱいいるんじゃないかと思った。
-僕のとったアプローチの紹介をすることによっていろんな人の生活が良くなればいいなぁなんて想いながら発表準備をしてました。</p>
-
-<h3>アプローチのまとめ</h3>
-
-<h4>privateなgemserverを用意する</h4>
-
-<ul>
-<li>弊社は<a href="https://github.com/geminabox/geminabox">geminabox</a>を使ってる</li>
-<li>privateなのでどんなgemをアップしても大丈夫</li>
-<li>メンテされていないgemへの辛いモンキーパッチはforkしてgem化できる</li>
-</ul>
-
-
-<p>※deployの観点からgemにしているほうが気楽だった</p>
-
-<p>※Gemfileでgitのsourceを指定するという手段もある</p>
-
-<h4>自由にgitリポジトリを作れるようにする</h4>
-
-<ul>
-<li>弊社はGitLabを使っている。</li>
-<li>メンバーは自由に他のプロジェクトを見ることができる</li>
-<li>メンバーは自由にプロジェクトを作ることができる</li>
-</ul>
-
-
-<h4>コミュニケーションできる場を作る</h4>
-
-<ul>
-<li>作ったgemのアナウンスをしたり、理想の開発とか語ったり</li>
-<li>弊社は週に1回各チームのメインエンジニアが集まるミーティングがあり、そこでアナウンスをしたりしていた。(今週のgem)</li>
-</ul>
-
-
-<h4>+αとしてgemを作る障壁を下げていく</h4>
-
-<ul>
-<li>gemとはカジュアルに作るものであるというイメージ化 <code>今週のgem</code></li>
-<li>gemを簡単に作り、簡単にデプロイできるgemを作る <code>drecom_gem</code></li>
-<li>新卒の子にも作ってもらった</li>
-<li>多くのgemを作っていくことによって、参考例をたくさん作った</li>
-</ul>
-
-
-<h3>雑記</h3>
-
-<p>読み原稿的なのも一緒にアップすればよかったな&hellip;</p>
-
-<p>別の記事で書きたいと思います!</p>
-
-<p><img src="http://rubykaigi.org/2014/images/badge-for-speaker.png" alt="speaker" />
-<img src="http://rubykaigi.org/2014/images/badge-for-official-sponsor.png" alt="sponsor" /></p>
 ]]></content>
   </entry>
   

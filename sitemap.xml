@@ -82,4 +82,10 @@
   <url>
     <loc>http://mitaku.github.com/blog/categories/rubykaigi/</loc>
   </url>
+  <url>
+    <loc>http://mitaku.github.com/blog/categories/gem/</loc>
+  </url>
+  <url>
+    <loc>http://mitaku.github.com/blog/categories/advent-calendar/</loc>
+  </url>
 </urlset>

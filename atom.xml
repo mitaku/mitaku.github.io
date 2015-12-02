@@ -4,7 +4,7 @@
   <title><![CDATA[mitaku.log]]></title>
   <link href="http://mitaku.github.com/atom.xml" rel="self"/>
   <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T01:14:10+09:00</updated>
+  <updated>2015-12-02T10:15:24+09:00</updated>
   <id>http://mitaku.github.com/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
@@ -52,8 +52,9 @@
 
 <hr />
 
-<p>最近、ドリコムではAWSの活用事例が増えてきました。
-AWSを便利に活用させていただいているのですが、必然的にアクセスキーやシークレットキーを取り扱う必要がでてきます。</p>
+<p>最近、ドリコムではAWSの活用事例が増えてきました。</p>
+
+<p>AWSを便利に活用させていただいているのですが、必然的にアクセスキーやシークレットキーを取り扱う必要がでてきます。</p>
 
 <p>アクセスキーとシークレットキーが漏れたりすると何が起こるかわかりません。</p>
 
@@ -67,8 +68,9 @@ AWSを便利に活用させていただいているのですが、必然的に�
 
 <h4>ActiveSupport::MessageEncryptor</h4>
 
-<p>みんなだいすき<code>ActiveSupport</code>
-それ、<code>ActiveSupport::MessageEncryptor</code>でできるよ!!</p>
+<p>みんなだいすき<code>ActiveSupport</code></p>
+
+<p>それ、<code>ActiveSupport::MessageEncryptor</code>でできるよ!!</p>
 
 <p><a href="http://qiita.com/kengos@github/items/e8ea8f71c47852fde48b">Railsで簡単可逆暗号(ActiveSupport::MessageEncryptor)</a></p>
 
@@ -79,9 +81,9 @@ AWSを便利に活用させていただいているのですが、必然的に�
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">secret</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">::</span><span class="n">hex</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">secret</span> <span class="o">=</span> <span class="ss">SecureRandom</span><span class="p">:</span><span class="ss">:hex</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
 </span><span class='line'><span class="c1">#=&gt; &quot;13f3bab71cc735eea473e8fd225bb04232d23eadf194bd066179e09871fdf9244b454c38ebd6715e03b903d595b8ac5d75488dff2d9d48f3d2eb5e9a026ebbb4ef799e9596376f63a49640e9336f9b011fa8972a763a6d1fe13b5d4d096a34cdeba91636c86b70e9a88fab56f2a4f6b19eee801ac0d1e3415bb17b8f92f0133b&quot;</span>
-</span><span class='line'><span class="n">encryptor</span> <span class="o">=</span> <span class="o">::</span><span class="no">ActiveSupport</span><span class="o">::</span><span class="no">MessageEncryptor</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="ss">cipher</span><span class="p">:</span> <span class="s1">&#39;aes-256-cbc&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">encryptor</span> <span class="o">=</span> <span class="o">::</span><span class="ss">ActiveSupport</span><span class="p">:</span><span class="ss">:MessageEncryptor</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="ss">cipher</span><span class="p">:</span> <span class="s1">&#39;aes-256-cbc&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="n">encrypt_message</span> <span class="o">=</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">encrypt_and_sign</span><span class="p">(</span><span class="s2">&quot;target_message&quot;</span><span class="p">)</span>
 </span><span class='line'><span class="c1">#=&gt; &quot;QjlkVndyeERrV3BUcW1paVVkTDJQTWhzV3R5OEV3N3JsR2FnV0VxRjdCTT0tLUJFSmdLTUNFbHdmZHhWcjZUQllUR0E9PQ==--6f6d897b52cfad56d9a31f8a19d44481e5343f18&quot;</span>
 </span><span class='line'><span class="n">encryptor</span><span class="o">.</span><span class="n">decrypt_and_verify</span><span class="p">(</span><span class="n">encrypt_message</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;target_message&quot;</span>
@@ -105,9 +107,9 @@ AWSを便利に活用させていただいているのですが、必然的に�
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">secret</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span>
-</span><span class='line'><span class="n">encrypted_message</span> <span class="o">=</span> <span class="no">ReversibleCryptography</span><span class="o">::</span><span class="no">Message</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="s2">&quot;target_message&quot;</span><span class="p">,</span> <span class="n">secret</span><span class="p">)</span>
+</span><span class='line'><span class="n">encrypted_message</span> <span class="o">=</span> <span class="ss">ReversibleCryptography</span><span class="p">:</span><span class="ss">:Message</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="s2">&quot;target_message&quot;</span><span class="p">,</span> <span class="n">secret</span><span class="p">)</span>
 </span><span class='line'><span class="c1">#=&gt; &quot;md5:388eeae24576572f946e9043a2118b2d:salt:161-225-182-109-143-90-1-28:aes-256-cfb:DHY6DF3+iFzH36FMbeI=&quot;</span>
-</span><span class='line'><span class="no">ReversibleCryptography</span><span class="o">::</span><span class="no">Message</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_message</span><span class="p">,</span> <span class="n">secret</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;target_message&quot;</span>
+</span><span class='line'><span class="ss">ReversibleCryptography</span><span class="p">:</span><span class="ss">:Message</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_message</span><span class="p">,</span> <span class="n">secret</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;target_message&quot;</span>
 </span><span class='line'><span class="c1">#=&gt; true</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -153,7 +155,7 @@ AWSを便利に活用させていただいているのですが、必然的に�
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">def</span> <span class="nf">decrypted_string</span>
-</span><span class='line'>    <span class="vi">@raw</span> <span class="o">||=</span> <span class="o">::</span><span class="no">ReversibleCryptography</span><span class="o">::</span><span class="no">Message</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="vi">@str</span><span class="p">,</span> <span class="o">::</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;REVERSIBLE_CRYPTOGRAPY_SECRET&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@raw</span> <span class="o">||=</span> <span class="o">::</span><span class="ss">ReversibleCryptography</span><span class="p">:</span><span class="ss">:Message</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="vi">@str</span><span class="p">,</span> <span class="o">::</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;REVERSIBLE_CRYPTOGRAPY_SECRET&quot;</span><span class="o">]</span><span class="p">)</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="n">alias_method</span> <span class="ss">:to_s</span><span class="p">,</span> <span class="ss">:decrypted_string</span>
@@ -186,9 +188,13 @@ AWSを便利に活用させていただいているのですが、必然的に�
 
 <h3>ReversibleCryptographyの活用プロダクト</h3>
 
-<p>弊社sue445さんのgemでも利用されています!
- * <a href="https://github.com/sue445/itamae-plugin-resource-encrypted_remote_file">itamae-plugin-resource-encrypted_remote_file gem</a>
-  * <a href="http://sue445.hatenablog.com/entry/2015/05/09/185807">itamae-plugin-resource-encrypted_remote_file を作った</a></p>
+<p>弊社sue445さんのgemでも利用されています!</p>
+
+<ul>
+<li><a href="https://github.com/sue445/itamae-plugin-resource-encrypted_remote_file">itamae-plugin-resource-encrypted_remote_file gem</a></li>
+<li><a href="http://sue445.hatenablog.com/entry/2015/05/09/185807">itamae-plugin-resource-encrypted_remote_file を作った</a></li>
+</ul>
+
 
 <h2>おわりに</h2>
 
