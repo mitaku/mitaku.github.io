@@ -4,7 +4,7 @@
   <title><![CDATA[mitaku.log]]></title>
   <link href="http://mitaku.github.com/atom.xml" rel="self"/>
   <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T10:15:24+09:00</updated>
+  <updated>2015-12-02T10:25:24+09:00</updated>
   <id>http://mitaku.github.com/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
@@ -96,8 +96,9 @@
 
 <h4>ReversibleCryptography</h4>
 
-<p><a href="https://github.com/mitaku/reversible_cryptography">reversible_cryptography</a>
-という自作gemを使ってます。</p>
+<p><a href="https://github.com/mitaku/reversible_cryptography">reversible_cryptography</a></p>
+
+<p>という自作gemを使ってます。</p>
 
 <p>READMEより</p>
 
@@ -202,7 +203,7 @@
 <li><strong>情報漏えいは人が原因のほうが多い!</strong></li>
 <li>意識をしつつ、健全な開発をしましょう!</li>
 <li>知りたくない情報は暗号化してからもらいましょう!</li>
-<li>可逆暗号ができる<a href="https://github.com/mitaku/reversible_cryptography">ReversibleCryptography</a>gemの紹介をしました</li>
+<li>可逆暗号ができる<a href="https://github.com/mitaku/reversible_cryptography">ReversibleCryptography gem</a>の紹介をしました</li>
 <li>気が向いたら使ってみてもらえれば幸いです!</li>
 </ul>
 
