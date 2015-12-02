@@ -3,7 +3,7 @@ layout: post
 title: "Rubyで可逆暗号"
 date: 2015-12-02 01:00:00 +0900
 comments: true
-categories:
+categories: ruby gem advent_calendar
 ---
 
 ## はじめに
@@ -35,9 +35,12 @@ _※エンジニア向けの記事です_
 
 などなど。思い当たるものはないでしょうか？
 
+
 ---
 
+
 最近、ドリコムではAWSの活用事例が増えてきました。
+
 AWSを便利に活用させていただいているのですが、必然的にアクセスキーやシークレットキーを取り扱う必要がでてきます。
 
 アクセスキーとシークレットキーが漏れたりすると何が起こるかわかりません。
@@ -51,6 +54,7 @@ AWSを便利に活用させていただいているのですが、必然的に�
 ### Rubyで可逆暗号
 #### ActiveSupport::MessageEncryptor
 みんなだいすき`ActiveSupport`
+
 それ、`ActiveSupport::MessageEncryptor`でできるよ!!
 
 [Railsで簡単可逆暗号(ActiveSupport::MessageEncryptor)](http://qiita.com/kengos@github/items/e8ea8f71c47852fde48b)
@@ -70,6 +74,7 @@ encryptor.decrypt_and_verify(encrypt_message) == "target_message"
 
 #### ReversibleCryptography
 [reversible_cryptography](https://github.com/mitaku/reversible_cryptography)
+
 という自作gemを使ってます。
 
 READMEより
@@ -127,6 +132,7 @@ aws:
 
 ### ReversibleCryptographyの活用プロダクト
 弊社sue445さんのgemでも利用されています!
+
  * [itamae-plugin-resource-encrypted_remote_file gem](https://github.com/sue445/itamae-plugin-resource-encrypted_remote_file)
   * [itamae-plugin-resource-encrypted_remote_file を作った](http://sue445.hatenablog.com/entry/2015/05/09/185807)
 
@@ -134,7 +140,8 @@ aws:
  * **情報漏えいは人が原因のほうが多い!**
   * 意識をしつつ、健全な開発をしましょう!
   * 知りたくない情報は暗号化してからもらいましょう!
- * 可逆暗号ができる[ReversibleCryptography](https://github.com/mitaku/reversible_cryptography)gemの紹介をしました
+ * 可逆暗号ができる[ReversibleCryptography gem](https://github.com/mitaku/reversible_cryptography)の紹介をしました
   * 気が向いたら使ってみてもらえれば幸いです!
+
 
 ということで次はnakajiさんです!
