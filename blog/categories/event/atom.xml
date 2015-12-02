@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: event | mitaku.log]]></title>
-  <link href="http://mitaku.github.com/blog/categories/event/atom.xml" rel="self"/>
-  <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T10:25:24+09:00</updated>
-  <id>http://mitaku.github.com/</id>
+  <link href="http://mitaku.github.io/blog/categories/event/atom.xml" rel="self"/>
+  <link href="http://mitaku.github.io/"/>
+  <updated>2015-12-02T11:07:36+09:00</updated>
+  <id>http://mitaku.github.io/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
     <email><![CDATA[mitaku1104@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails寺子屋 x kosenconfを開催した]]></title>
-    <link href="http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf/"/>
+    <link href="http://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/"/>
     <updated>2013-03-27T22:38:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf</id>
+    <id>http://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf</id>
     <content type="html"><![CDATA[<p>2013/03/23に<a href="http://rails.terakoya.io/">Rails寺子屋</a>というイベントを開催し、講師という立場で参加した。</p>
 
 <p>午前10時という時間から開始ということで、寝坊だったり、遠方からの参加者は朝から東京に投げ出され大変そうだった印象。</p>
@@ -86,9 +86,9 @@ puts 140.times.map { s.chars.sample }.join
   
   <entry>
     <title type="html"><![CDATA[高専カンファレンスin東京を開催した]]></title>
-    <link href="http://mitaku.github.com/blog/2012/05/03/held-the-kosenconf-045tokyo/"/>
+    <link href="http://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo/"/>
     <updated>2012-05-03T16:31:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2012/05/03/held-the-kosenconf-045tokyo</id>
+    <id>http://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo</id>
     <content type="html"><![CDATA[<p>高専カンファレンスin東京を開催した</p>
 
 <p>4月14日に<a href="http://kc045tokyo.heroku.com">高専カンファレンスin東京</a>を開催した話</p>

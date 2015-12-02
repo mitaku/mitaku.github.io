@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ruby | mitaku.log]]></title>
-  <link href="http://mitaku.github.com/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T10:25:24+09:00</updated>
-  <id>http://mitaku.github.com/</id>
+  <link href="http://mitaku.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://mitaku.github.io/"/>
+  <updated>2015-12-02T11:07:36+09:00</updated>
+  <id>http://mitaku.github.io/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
     <email><![CDATA[mitaku1104@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rubyで可逆暗号]]></title>
-    <link href="http://mitaku.github.com/blog/2015/12/02/ruby-reversible-cryptography/"/>
+    <link href="http://mitaku.github.io/blog/2015/12/02/ruby-reversible-cryptography/"/>
     <updated>2015-12-02T01:00:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2015/12/02/ruby-reversible-cryptography</id>
+    <id>http://mitaku.github.io/blog/2015/12/02/ruby-reversible-cryptography</id>
     <content type="html"><![CDATA[<h2>はじめに</h2>
 
 <p>これは <a href="http://www.adventar.org/calendars/1044">【その2】ドリコム Advent Calendar 2015</a> 2日目の記事です</p>
@@ -173,9 +173,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[RubyKaigi2014で発表した]]></title>
-    <link href="http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech/"/>
+    <link href="http://mitaku.github.io/blog/2014/09/22/rubykaigi-2014-speech/"/>
     <updated>2014-09-22T22:42:12+09:00</updated>
-    <id>http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech</id>
+    <id>http://mitaku.github.io/blog/2014/09/22/rubykaigi-2014-speech</id>
     <content type="html"><![CDATA[<p>RubyKaigi 2014めっちゃいいKaigiだった。</p>
 
 <h2>初めての発表</h2>

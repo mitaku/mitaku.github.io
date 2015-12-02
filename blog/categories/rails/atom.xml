@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: rails | mitaku.log]]></title>
-  <link href="http://mitaku.github.com/blog/categories/rails/atom.xml" rel="self"/>
-  <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T10:25:24+09:00</updated>
-  <id>http://mitaku.github.com/</id>
+  <link href="http://mitaku.github.io/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://mitaku.github.io/"/>
+  <updated>2015-12-02T11:07:36+09:00</updated>
+  <id>http://mitaku.github.io/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
     <email><![CDATA[mitaku1104@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails4でのRSpec自動実行環境の作成]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/10/rails4-testing-automation/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/10/rails4-testing-automation/"/>
     <updated>2013-07-10T00:15:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/10/rails4-testing-automation</id>
+    <id>http://mitaku.github.io/blog/2013/07/10/rails4-testing-automation</id>
     <content type="html"><![CDATA[<p>Rails4アプリでファイルの変更を検知し、RSpecを実行するようにする。
 テストの結果はGrowlにて通知するようにする</p>
 
@@ -90,9 +90,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Rails4でアプリケーションを作る]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/07/generate-rails4-app/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/07/generate-rails4-app/"/>
     <updated>2013-07-07T01:29:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/07/generate-rails4-app</id>
+    <id>http://mitaku.github.io/blog/2013/07/07/generate-rails4-app</id>
     <content type="html"><![CDATA[<p>6/25 <a href="http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/">Rails4.0.0がリリース</a>されました。</p>
 
 <p>ということで早速Rails4でプロジェクトを作成。</p>

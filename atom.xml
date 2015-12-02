@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[mitaku.log]]></title>
-  <link href="http://mitaku.github.com/atom.xml" rel="self"/>
-  <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T10:25:24+09:00</updated>
-  <id>http://mitaku.github.com/</id>
+  <link href="http://mitaku.github.io/atom.xml" rel="self"/>
+  <link href="http://mitaku.github.io/"/>
+  <updated>2015-12-02T11:07:36+09:00</updated>
+  <id>http://mitaku.github.io/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
     <email><![CDATA[mitaku1104@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rubyで可逆暗号]]></title>
-    <link href="http://mitaku.github.com/blog/2015/12/02/ruby-reversible-cryptography/"/>
+    <link href="http://mitaku.github.io/blog/2015/12/02/ruby-reversible-cryptography/"/>
     <updated>2015-12-02T01:00:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2015/12/02/ruby-reversible-cryptography</id>
+    <id>http://mitaku.github.io/blog/2015/12/02/ruby-reversible-cryptography</id>
     <content type="html"><![CDATA[<h2>はじめに</h2>
 
 <p>これは <a href="http://www.adventar.org/calendars/1044">【その2】ドリコム Advent Calendar 2015</a> 2日目の記事です</p>
@@ -214,9 +214,9 @@
   
   <entry>
     <title type="html"><![CDATA[RubyKaigi2014で発表した]]></title>
-    <link href="http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech/"/>
+    <link href="http://mitaku.github.io/blog/2014/09/22/rubykaigi-2014-speech/"/>
     <updated>2014-09-22T22:42:12+09:00</updated>
-    <id>http://mitaku.github.com/blog/2014/09/22/rubykaigi-2014-speech</id>
+    <id>http://mitaku.github.io/blog/2014/09/22/rubykaigi-2014-speech</id>
     <content type="html"><![CDATA[<p>RubyKaigi 2014めっちゃいいKaigiだった。</p>
 
 <h2>初めての発表</h2>
@@ -327,9 +327,9 @@
   
   <entry>
     <title type="html"><![CDATA[2013年 振り返り]]></title>
-    <link href="http://mitaku.github.com/blog/2014/01/01/retrospective-2013/"/>
+    <link href="http://mitaku.github.io/blog/2014/01/01/retrospective-2013/"/>
     <updated>2014-01-01T00:58:42+09:00</updated>
-    <id>http://mitaku.github.com/blog/2014/01/01/retrospective-2013</id>
+    <id>http://mitaku.github.io/blog/2014/01/01/retrospective-2013</id>
     <content type="html"><![CDATA[<p>転職記事書いてから全く書いてなかった三浦です。</p>
 
 <p>あけましておめでとうございます。</p>
@@ -413,9 +413,9 @@
   
   <entry>
     <title type="html"><![CDATA[株式会社オプティムを退職しました。]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/15/retired-from-optim/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/15/retired-from-optim/"/>
     <updated>2013-07-15T10:36:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/15/retired-from-optim</id>
+    <id>http://mitaku.github.io/blog/2013/07/15/retired-from-optim</id>
     <content type="html"><![CDATA[<h2>三浦、会社やめるってよ</h2>
 
 <p>私事ですが2013/07/14に株式会社オプティムを退職しました。</p>
@@ -491,9 +491,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails4でのRSpec自動実行環境の作成]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/10/rails4-testing-automation/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/10/rails4-testing-automation/"/>
     <updated>2013-07-10T00:15:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/10/rails4-testing-automation</id>
+    <id>http://mitaku.github.io/blog/2013/07/10/rails4-testing-automation</id>
     <content type="html"><![CDATA[<p>Rails4アプリでファイルの変更を検知し、RSpecを実行するようにする。
 テストの結果はGrowlにて通知するようにする</p>
 
@@ -578,9 +578,9 @@
   
   <entry>
     <title type="html"><![CDATA[HomebrewでRictyをインストール]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/08/installed-ricty/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/08/installed-ricty/"/>
     <updated>2013-07-08T19:01:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/08/installed-ricty</id>
+    <id>http://mitaku.github.io/blog/2013/07/08/installed-ricty</id>
     <content type="html"><![CDATA[<p>個人的にとても見やすいフォントのRictyをHomebrewで手軽にインストールできるみたいですね。</p>
 
 <ul>
@@ -636,9 +636,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails4でアプリケーションを作る]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/07/generate-rails4-app/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/07/generate-rails4-app/"/>
     <updated>2013-07-07T01:29:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/07/generate-rails4-app</id>
+    <id>http://mitaku.github.io/blog/2013/07/07/generate-rails4-app</id>
     <content type="html"><![CDATA[<p>6/25 <a href="http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/">Rails4.0.0がリリース</a>されました。</p>
 
 <p>ということで早速Rails4でプロジェクトを作成。</p>
@@ -858,9 +858,9 @@
   
   <entry>
     <title type="html"><![CDATA[クリップボードを有効にしたVimを使う]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard/"/>
     <updated>2013-07-06T18:26:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard</id>
+    <id>http://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard</id>
     <content type="html"><![CDATA[<p>MacのVimは初期状態でclipboardが有効になっていなくて辛いのでvimからclipboardが使えるようにする</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -913,9 +913,9 @@
   
   <entry>
     <title type="html"><![CDATA[高専カンファレンス5周年記念パーティー]]></title>
-    <link href="http://mitaku.github.com/blog/2013/06/27/present-kosenconf-5th-anniversary/"/>
+    <link href="http://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary/"/>
     <updated>2013-06-27T15:53:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/06/27/present-kosenconf-5th-anniversary</id>
+    <id>http://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary</id>
     <content type="html"><![CDATA[<p>6/15に行われた高専カンファレンス5周年記念パーティーに参加してきた。</p>
 
 <p>高専カンファレンスで人生を(良い意味で)狂わされた自分自身としては、5周年というのはとても感慨深いものがあるなぁと老害オーラを出していた。</p>
@@ -966,9 +966,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails寺子屋 x kosenconfを開催した]]></title>
-    <link href="http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf/"/>
+    <link href="http://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/"/>
     <updated>2013-03-27T22:38:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/03/27/rails-terakoya-kosenconf</id>
+    <id>http://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf</id>
     <content type="html"><![CDATA[<p>2013/03/23に<a href="http://rails.terakoya.io/">Rails寺子屋</a>というイベントを開催し、講師という立場で参加した。</p>
 
 <p>午前10時という時間から開始ということで、寝坊だったり、遠方からの参加者は朝から東京に投げ出され大変そうだった印象。</p>
@@ -1042,9 +1042,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rubyとの付き合い]]></title>
-    <link href="http://mitaku.github.com/blog/2013/03/18/why-why-why-ruby/"/>
+    <link href="http://mitaku.github.io/blog/2013/03/18/why-why-why-ruby/"/>
     <updated>2013-03-18T00:17:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/03/18/why-why-why-ruby</id>
+    <id>http://mitaku.github.io/blog/2013/03/18/why-why-why-ruby</id>
     <content type="html"><![CDATA[<p>もうすぐ社会人になってから4年が経とうとしている。</p>
 
 <p>その社会人生活の中で「Ruby」という素晴らしいツールと触れていた時間がとても多かった</p>
@@ -1269,9 +1269,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hatena BlogをRSS登録]]></title>
-    <link href="http://mitaku.github.com/blog/2013/03/17/hatena-blog-rss-feed/"/>
+    <link href="http://mitaku.github.io/blog/2013/03/17/hatena-blog-rss-feed/"/>
     <updated>2013-03-17T21:39:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/03/17/hatena-blog-rss-feed</id>
+    <id>http://mitaku.github.io/blog/2013/03/17/hatena-blog-rss-feed</id>
     <content type="html"><![CDATA[<p>Google Readerのサービス終了予告から、数日が経ちました。</p>
 
 <p>ボクも情報収集の起点には「Google Reader」がいて、
@@ -1297,9 +1297,9 @@
   
   <entry>
     <title type="html"><![CDATA[高専カンファレンスin東京を開催した]]></title>
-    <link href="http://mitaku.github.com/blog/2012/05/03/held-the-kosenconf-045tokyo/"/>
+    <link href="http://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo/"/>
     <updated>2012-05-03T16:31:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2012/05/03/held-the-kosenconf-045tokyo</id>
+    <id>http://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo</id>
     <content type="html"><![CDATA[<p>高専カンファレンスin東京を開催した</p>
 
 <p>4月14日に<a href="http://kc045tokyo.heroku.com">高専カンファレンスin東京</a>を開催した話</p>

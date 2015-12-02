@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: kosenconf | mitaku.log]]></title>
-  <link href="http://mitaku.github.com/blog/categories/kosenconf/atom.xml" rel="self"/>
-  <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T10:25:24+09:00</updated>
-  <id>http://mitaku.github.com/</id>
+  <link href="http://mitaku.github.io/blog/categories/kosenconf/atom.xml" rel="self"/>
+  <link href="http://mitaku.github.io/"/>
+  <updated>2015-12-02T11:07:36+09:00</updated>
+  <id>http://mitaku.github.io/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
     <email><![CDATA[mitaku1104@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[高専カンファレンス5周年記念パーティー]]></title>
-    <link href="http://mitaku.github.com/blog/2013/06/27/present-kosenconf-5th-anniversary/"/>
+    <link href="http://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary/"/>
     <updated>2013-06-27T15:53:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/06/27/present-kosenconf-5th-anniversary</id>
+    <id>http://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary</id>
     <content type="html"><![CDATA[<p>6/15に行われた高専カンファレンス5周年記念パーティーに参加してきた。</p>
 
 <p>高専カンファレンスで人生を(良い意味で)狂わされた自分自身としては、5周年というのはとても感慨深いものがあるなぁと老害オーラを出していた。</p>

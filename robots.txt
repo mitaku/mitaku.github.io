@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://mitaku.github.com/sitemap.xml 
+Sitemap: http://mitaku.github.io/sitemap.xml 

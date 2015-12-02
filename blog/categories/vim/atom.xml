@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: vim | mitaku.log]]></title>
-  <link href="http://mitaku.github.com/blog/categories/vim/atom.xml" rel="self"/>
-  <link href="http://mitaku.github.com/"/>
-  <updated>2015-12-02T10:25:24+09:00</updated>
-  <id>http://mitaku.github.com/</id>
+  <link href="http://mitaku.github.io/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://mitaku.github.io/"/>
+  <updated>2015-12-02T11:07:36+09:00</updated>
+  <id>http://mitaku.github.io/</id>
   <author>
     <name><![CDATA[Takumi MIURA]]></name>
     <email><![CDATA[mitaku1104@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[クリップボードを有効にしたVimを使う]]></title>
-    <link href="http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard/"/>
+    <link href="http://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard/"/>
     <updated>2013-07-06T18:26:00+09:00</updated>
-    <id>http://mitaku.github.com/blog/2013/07/06/vim-enabled-clipboard</id>
+    <id>http://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard</id>
     <content type="html"><![CDATA[<p>MacのVimは初期状態でclipboardが有効になっていなくて辛いのでvimからclipboardが使えるようにする
 <code>
 vim --version |grep clipboard
