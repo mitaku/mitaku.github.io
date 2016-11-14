@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Life on mitaku.log </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://mitaku.github.io/categories/life/index.xml</link>
+    <language>ja</language>
+    <author>TakumiMIURA</author>
+    <copyright>© 2016 Copyright Takumi Miura</copyright>
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Rubyとの付き合い</title>
+      <link>https://mitaku.github.io/blog/2013/03/18/why-why-why-ruby/</link>
+      <pubDate>Mon, 18 Mar 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/03/18/why-why-why-ruby/</guid>
+      <description>&lt;p&gt;もうすぐ社会人になってから4年が経とうとしている。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;その社会人生活の中で「Ruby」という素晴らしいツールと触れていた時間がとても多かった&lt;/p&gt;
+
+&lt;p&gt;振り返ってみたので、形に残そうと思う。&lt;/p&gt;
+
+&lt;p&gt;長文になっちゃいそうだ&lt;/p&gt;
+
+&lt;h3 id=&#34;ボクはrubyが好きだ&#34;&gt;ボクはRubyが好きだ&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Rubyをキメると気持ちいい&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;RubyKaigi2008のときにまつもとゆきひろさんの名言&lt;/p&gt;
+
+&lt;p&gt;Rubyを書いていると楽しい&lt;/p&gt;
+
+&lt;p&gt;Rubyっぽく書けたらすごく嬉しい&lt;/p&gt;
+
+&lt;p&gt;ボクはRubyが好きだ。&lt;/p&gt;
+
+&lt;p&gt;Rubyを使っている人たちも好きだ&lt;/p&gt;
+
+&lt;p&gt;Rubyコミュニティが好きだ&lt;/p&gt;
+
+&lt;h3 id=&#34;仕事の武器としてのruby&#34;&gt;仕事の武器としてのRuby&lt;/h3&gt;
+
+&lt;p&gt;現在Rubyを1つの武器として、仕事をしている。&lt;/p&gt;
+
+&lt;p&gt;最近の嬉しいニュースとして&lt;/p&gt;
+
+&lt;p&gt;2012年の12月に片手間で進んだプロジェクトが最近リリースされ、はじめてのユーザーがついたらしい。嬉しい。&lt;/p&gt;
+
+&lt;p&gt;学生時代はRubyを触ったことなんかなかったが、今や立派な武器になっている。&lt;/p&gt;
+
+&lt;h4 id=&#34;きっかけ&#34;&gt;きっかけ&lt;/h4&gt;
+
+&lt;p&gt;2009年の4月、アルバイトをしていた現在の会社に新入社員として入社した。&lt;/p&gt;
+
+&lt;p&gt;当時は日本の家庭に配布されるWindowsアプリケーションの検証作業をしていた。&lt;/p&gt;
+
+&lt;p&gt;大黒柱的な存在のプロジェクトの一員として時間を過ごしていた。（はず）&lt;/p&gt;
+
+&lt;p&gt;ただ、Excelの表を埋める作業というのはボクは好きになれず、楽しくはないのでモヤモヤしてた。&lt;/p&gt;
+
+&lt;p&gt;風通しのよい職場なので日報や呑み会の席で「コード書きたい！」的なことを延々と言ってた。&lt;/p&gt;
+
+&lt;p&gt;時には社長に、時には開発の責任者に、時にはプロジェクトのマネージャに&lt;/p&gt;
+
+&lt;p&gt;今思うと、よく言ってたなぁ&lt;/p&gt;
+
+&lt;p&gt;そしたら6月の夜中に、当時のマネージャから異動の話をもらった。&lt;/p&gt;
+
+&lt;p&gt;そのシーンがすごく印象的で今でも覚えている。Rubyと付き合い始めるきっかけである。&lt;/p&gt;
+
+&lt;p&gt;異動先のプロジェクトは研究開発プロジェクト。&lt;/p&gt;
+
+&lt;p&gt;そこで&lt;a href=&#34;http://rubyonrails.org&#34;&gt;Ruby on Rails&lt;/a&gt;を使って世界を変えるアプリケーションの開発をすることになった。&lt;/p&gt;
+
+&lt;h4 id=&#34;挑戦と野望&#34;&gt;挑戦と野望&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;当時のスキルセット
+
+&lt;ul&gt;
+&lt;li&gt;C/C++ (学校で習う程度)&lt;/li&gt;
+&lt;li&gt;C# (趣味でアプリケーション作る程度)&lt;/li&gt;
+&lt;li&gt;Windows (Win32 API叩いて遊ぶ程度)&lt;/li&gt;
+&lt;li&gt;Linux (基本的な操作がCUIでできる程度)&lt;/li&gt;
+&lt;li&gt;HTML/CSS/Javascript (趣味でホームページ作る程度)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そこはとても苦しく、楽しい世界だった。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby&lt;/li&gt;
+&lt;li&gt;Ruby on Rails&lt;/li&gt;
+&lt;li&gt;Webアプリケーション&lt;/li&gt;
+&lt;li&gt;MVC&lt;/li&gt;
+&lt;li&gt;MySQL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;全てが新鮮で、全てが力不足で、全てが刺激的だった.&lt;/p&gt;
+
+&lt;p&gt;環境構築には当たり前のように躓き、貧弱な&lt;code&gt;.vimrc&lt;/code&gt;で戦っていたなぁ…&lt;/p&gt;
+
+&lt;p&gt;当時は&lt;code&gt;bundler&lt;/code&gt;なんてなかったから、アプリケーションの起動にすら苦労した記憶がある&lt;/p&gt;
+
+&lt;p&gt;若いメンバーで構成されているプロジェクトで、社内にRubyのエンジニアはほとんどいなかった。&lt;/p&gt;
+
+&lt;p&gt;なるべくして、Rails Wayから外れたアプリケーションになっていた。&lt;/p&gt;
+
+&lt;p&gt;ボクとしては、すごくチャンスに感じていて&lt;/p&gt;
+
+&lt;p&gt;これなら、社内で(Ruby on Railsの)エンジニアとしてトップに立てるんじゃないかと思って、そこからRubyとの激しい付き合いが始まった。&lt;/p&gt;
+
+&lt;p&gt;社内で勉強会を開催したり、趣味でアプリケーションを作ってみたり、来週作るであろう機能を家でプロトタイピングしてみたり&lt;/p&gt;
+
+&lt;p&gt;とにかく手を動かしていた印象がある。&lt;/p&gt;
+
+&lt;p&gt;未熟者のボクに多くのことを教えてくださった、&lt;/p&gt;
+
+&lt;p&gt;プロジェクトのメインプログラマの人たちがやめるタイミングが1つの進化のきっかけだったのかもしれない。&lt;/p&gt;
+
+&lt;p&gt;よりRubyやRailsの知識が求められるようになって、より高度なことを任せてもらえるようになった。&lt;/p&gt;
+
+&lt;p&gt;疑問の答えを持っている人が社内にいなくなったときに、外の世界へ飛び出した。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RubyKaigi&lt;/li&gt;
+&lt;li&gt;Coffee.rb&lt;/li&gt;
+&lt;li&gt;デブサミ&lt;/li&gt;
+&lt;li&gt;etc&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;外の世界は刺激的で、何かを患っている人がいっぱいいて、仲間がいて、楽しかった。&lt;/p&gt;
+
+&lt;h4 id=&#34;暗黒魔法&#34;&gt;暗黒魔法&lt;/h4&gt;
+
+&lt;p&gt;Ruby on RailsにはPluginという機構がある。&lt;/p&gt;
+
+&lt;p&gt;事業の拡大とともにアプリケーションを使ってくれる人が増え、要望も増え&lt;/p&gt;
+
+&lt;p&gt;ブランチ開発にも飽きたのでプラグインで差分を吸収できるようにしたかった。&lt;/p&gt;
+
+&lt;p&gt;Pluginを使うにはRails2.3に上げる必要があったので、脱線しているRailsレガシープロジェクトを2.3に上げる必要が出てきた。&lt;/p&gt;
+
+&lt;p&gt;すげー苦しかった。(笑)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;そもそもアプリケーションが起動しない&lt;/li&gt;
+&lt;li&gt;ありがちなメソッド名のヘルパーがRailsに追加されて(プロジェクトで使ってて)動かなかった&lt;/li&gt;
+&lt;li&gt;動かないGemは出てきてモンキーパッチを当てる&lt;/li&gt;
+&lt;li&gt;そもそも通ってないテストコードがいっぱいいた&lt;/li&gt;
+&lt;li&gt;嘘をついているコメント&lt;/li&gt;
+&lt;li&gt;意図が分からないコード&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;こんな状態なので作業自体が見積もれなくて、進捗も分からなかったし有識者もいなくて、困った。&lt;/p&gt;
+
+&lt;p&gt;結果的にプロジェクトへの理解は深まったし、Railsにも少し詳しくなれた気がする。&lt;/p&gt;
+
+&lt;p&gt;そうそう、この時のハイライトといったらとある目的を達成するために&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;image_path&lt;/code&gt;とか&lt;code&gt;image_tag&lt;/code&gt;に&lt;code&gt;alias_method_chain&lt;/code&gt;とかしてる当たりがエグい&lt;/p&gt;
+
+&lt;p&gt;黒魔術とかそういう次元じゃなくて暗黒魔法だった。今もそれを利用されてて、泣きたい。&lt;/p&gt;
+
+&lt;h4 id=&#34;自由な空&#34;&gt;自由な空&lt;/h4&gt;
+
+&lt;p&gt;2年目の3月に大きな挑戦のチャンスをもらえた。&lt;/p&gt;
+
+&lt;p&gt;スマートフォンの法人利用が増えてきて、新たなビジネスの波が生まれた。&lt;/p&gt;
+
+&lt;p&gt;そのとき、以前から関わっているプロジェクトのスマートフォン対応が必要になった。&lt;/p&gt;
+
+&lt;p&gt;ユースケースも、機能も違うこともあり、レガシープロジェクトにそれをのっけるよりは&lt;/p&gt;
+
+&lt;p&gt;新たなプロジェクトとして１から作ることになった。&lt;/p&gt;
+
+&lt;p&gt;当時でてきたRails3での初プロジェクト、多くの部分を開発させてもらえた。&lt;/p&gt;
+
+&lt;p&gt;多少の不安と、ワクワク、ドキドキに支配された時間だった。&lt;/p&gt;
+
+&lt;p&gt;なにより、足枷がない、フットワークが軽い状態の開発は初めてで、とても幸せな時間を過ごしていたんだなと、今になって思う。&lt;/p&gt;
+
+&lt;p&gt;当然エンジニアがいないから、開発は楽じゃなかったけどこの経験は今の生活にも活きてきている。&lt;/p&gt;
+
+&lt;p&gt;この時バージョン管理はGitになったし、Hamlを標準で使うようになったし、Hudson(現Jenkins)を導入した。&lt;/p&gt;
+
+&lt;h4 id=&#34;進化の速度&#34;&gt;進化の速度&lt;/h4&gt;
+
+&lt;p&gt;作ったプロダクトが基盤となって、いろんなプロダクトが生まれた。&lt;/p&gt;
+
+&lt;p&gt;当時の流行りは今の流行りじゃないことが多くて、そのまま利用されると少し恥ずかしさが残ってしまう。&lt;/p&gt;
+
+&lt;p&gt;ただ、進化が速いところはとても好きだ。&lt;/p&gt;
+
+&lt;p&gt;Ruby on RailsやWebはいつでもボクを挑戦者にしてくれる。&lt;/p&gt;
+
+&lt;p&gt;2ヶ月前のbetterは今のdefactだったり、オワコンだったりと怠けるとすぐに時代遅れになってしまう。&lt;/p&gt;
+
+&lt;p&gt;とても楽しい世界だ&lt;/p&gt;
+
+&lt;h4 id=&#34;楽をする&#34;&gt;楽をする&lt;/h4&gt;
+
+&lt;p&gt;人生は短い&lt;/p&gt;
+
+&lt;p&gt;自分のやりたいことをやるに人生は短すぎる。&lt;/p&gt;
+
+&lt;p&gt;ボクには面倒な作業で楽をするためのツールとしてRubyがいた&lt;/p&gt;
+
+&lt;p&gt;毎日5分かかってた作業が30秒で終わるようになったらそれはとても素晴らしいことで&lt;/p&gt;
+
+&lt;p&gt;素晴らしいことを大好きなRubyで行えるということはとても素晴らしいことだと思う。&lt;/p&gt;
+
+&lt;p&gt;毎日の退屈な5分間を無くすために、好きなエディタ、好きな言語で楽しくプログラミングをして、時間を使うのはとても有意義だ。&lt;/p&gt;
+
+&lt;p&gt;テスト用のアプリ、オレオレ７つ道具、Rubyで解決できる問題も手段もいっぱいある。&lt;/p&gt;
+
+&lt;h2 id=&#34;なぜrubyだったんだろう-まとめ&#34;&gt;なぜRubyだったんだろう まとめ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;まとまらない&lt;/li&gt;
+&lt;li&gt;Ruby on Railsで社内でトップになれるんじゃないかという野望&lt;/li&gt;
+&lt;li&gt;Rubyを取り巻く環境が好き&lt;/li&gt;
+&lt;li&gt;Rubyを書いていると楽しい&lt;/li&gt;
+&lt;li&gt;継続は力なり&lt;/li&gt;
+&lt;li&gt;人生は短い!&lt;/li&gt;
+&lt;li&gt;これからもRubyと付き合って行きたい&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;全然まとまらなかった。&lt;/p&gt;
+
+&lt;p&gt;とりあえずこのへんで&lt;/p&gt;
+
+&lt;p&gt;押忍!!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
