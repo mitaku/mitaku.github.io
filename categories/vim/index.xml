@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Vim on mitaku.log </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://mitaku.github.io/categories/vim/index.xml</link>
+    <language>ja</language>
+    <author>TakumiMIURA</author>
+    <copyright>© 2016 Copyright Takumi Miura</copyright>
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>クリップボードを有効にしたVimを使う</title>
+      <link>https://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard/</link>
+      <pubDate>Sat, 06 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard/</guid>
+      <description>&lt;p&gt;MacのVimは初期状態でclipboardが有効になっていなくて辛いのでvimからclipboardが使えるようにする&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vim --version |grep clipboard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;結果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-clientserver -clipboard +cmdline_compl +cmdline_hist +cmdline_info +comments
+ -xterm_clipboard -xterm_save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;現時点ではHomebrewのVimのFormulaはclipboardに対するオプションがないみたいなのでMercurialからソースを持ってきて対応する&lt;/p&gt;
+
+&lt;h2 id=&#34;1-hgコマンドを使えるようにする&#34;&gt;1. hgコマンドを使えるようにする&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install hg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-vimをinstall&#34;&gt;2. vimをinstall&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;hg clone https://vim.googlecode.com/hg/ /tmp/vim
+cd /tmp/vim
+make clean
+./configure --prefix=/usr/local --enable-multibyte --enable-xim --enable-fontset --enable-rubyinterp --enable-perlinterp --with-features=huge --disable-selinux
+make
+make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-確認&#34;&gt;3. 確認&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/vim --version |grep clipboard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;+clipboard&lt;/code&gt;が含まれていればOK&lt;/p&gt;
+
+&lt;p&gt;configureに与えるものは各自必要なものを指定すること&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

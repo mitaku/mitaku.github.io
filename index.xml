@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title> on mitaku.log </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://mitaku.github.io/index.xml</link>
+    <language>ja</language>
+    <author>TakumiMIURA</author>
+    <copyright>© 2016 Copyright Takumi Miura</copyright>
+    <updated>Wed, 02 Dec 2015 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Rubyで可逆暗号</title>
+      <link>https://mitaku.github.io/blog/2015/12/02/ruby-reversible-cryptography/</link>
+      <pubDate>Wed, 02 Dec 2015 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2015/12/02/ruby-reversible-cryptography/</guid>
+      <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
+
+&lt;p&gt;これは &lt;a href=&#34;http://www.adventar.org/calendars/1044&#34;&gt;【その2】ドリコム Advent Calendar 2015&lt;/a&gt; 2日目の記事です&lt;/p&gt;
+
+&lt;p&gt;1日目の記事はarihhさんの「&lt;a href=&#34;http://arihh.hatenablog.jp/entry/2015/12/01/005948&#34;&gt;カンバンの管理に改善を加えたら加速した話 - arihhのブログ&lt;/a&gt;」です&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.adventar.org/calendars/1043&#34;&gt;【その1】ドリコム Advent Calendar 2015 - Adventar&lt;/a&gt; もあります!&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;めっちゃブログ書くのが久しぶりで、このブログの更新の仕方を忘れてたりしました。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;あと、モンハンやりたい。モンハンやりたい、モンハンやりたい&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;※エンジニア向けの記事です&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;本題-rubyで可逆暗号-その情報を知りたくない僕らは&#34;&gt;本題 - 「Rubyで可逆暗号-その情報を知りたくない僕らは」&lt;/h2&gt;
+
+&lt;p&gt;生データとして扱いたくない情報を難読化する話をします!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;※エンジニア向けの記事です&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;エンジニアの自分が-生データとして扱いたくない情報&#34;&gt;(エンジニアの自分が)生データとして扱いたくない情報&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;何かのアカウント(ID/PW)&lt;/li&gt;
+&lt;li&gt;自分のものじゃない秘密鍵&lt;/li&gt;
+&lt;li&gt;ユニークなギフトコード&lt;/li&gt;
+&lt;li&gt;etc&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;などなど。思い当たるものはないでしょうか？&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;最近、ドリコムではAWSの活用事例が増えてきました。&lt;/p&gt;
+
+&lt;p&gt;AWSを便利に活用させていただいているのですが、必然的にアクセスキーやシークレットキーを取り扱う必要がでてきます。&lt;/p&gt;
+
+&lt;p&gt;アクセスキーとシークレットキーが漏れたりすると何が起こるかわかりません。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;情報漏えいはシステムよりも人間が原因になることのほうが多い&lt;/strong&gt;と教わってきたので&lt;/p&gt;
+
+&lt;p&gt;個人的には知らなくてよければ知らないまま過ごしたい情報です。&lt;/p&gt;
+
+&lt;p&gt;なので、少しでも心を穏やかにするために、生のデータを扱うの避けて、一工夫して運用しています。&lt;/p&gt;
+
+&lt;h3 id=&#34;rubyで可逆暗号&#34;&gt;Rubyで可逆暗号&lt;/h3&gt;
+
+&lt;h4 id=&#34;activesupport-messageencryptor&#34;&gt;ActiveSupport::MessageEncryptor&lt;/h4&gt;
+
+&lt;p&gt;みんなだいすき&lt;code&gt;ActiveSupport&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;それ、&lt;code&gt;ActiveSupport::MessageEncryptor&lt;/code&gt;でできるよ!!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://qiita.com/kengos@github/items/e8ea8f71c47852fde48b&#34;&gt;Railsで簡単可逆暗号(ActiveSupport::MessageEncryptor)&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;secret &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #336600&#34;&gt;SecureRandom&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;hex(&lt;span style=&#34;color: #FF6600&#34;&gt;128&lt;/span&gt;)
+&lt;span style=&#34;color: #0099FF; font-style: italic&#34;&gt;#=&amp;gt; &amp;quot;13f3bab71cc735eea473e8fd225bb04232d23eadf194bd066179e09871fdf9244b454c38ebd6715e03b903d595b8ac5d75488dff2d9d48f3d2eb5e9a026ebbb4ef799e9596376f63a49640e9336f9b011fa8972a763a6d1fe13b5d4d096a34cdeba91636c86b70e9a88fab56f2a4f6b19eee801ac0d1e3415bb17b8f92f0133b&amp;quot;&lt;/span&gt;
+encryptor &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #336600&#34;&gt;ActiveSupport&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #336600&#34;&gt;MessageEncryptor&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;new(secret, &lt;span style=&#34;color: #FFCC33&#34;&gt;cipher&lt;/span&gt;: &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;aes-256-cbc&amp;#39;&lt;/span&gt;)
+encrypt_message &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; encryptor&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;encrypt_and_sign(&lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;target_message&amp;quot;&lt;/span&gt;)
+&lt;span style=&#34;color: #0099FF; font-style: italic&#34;&gt;#=&amp;gt; &amp;quot;QjlkVndyeERrV3BUcW1paVVkTDJQTWhzV3R5OEV3N3JsR2FnV0VxRjdCTT0tLUJFSmdLTUNFbHdmZHhWcjZUQllUR0E9PQ==--6f6d897b52cfad56d9a31f8a19d44481e5343f18&amp;quot;&lt;/span&gt;
+encryptor&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;decrypt_and_verify(encrypt_message) &lt;span style=&#34;color: #555555&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;target_message&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #0099FF; font-style: italic&#34;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;便利ですね。
+これだけだと芸がないので、ドリコムでの事例を紹介します!&lt;/p&gt;
+
+&lt;h4 id=&#34;reversiblecryptography&#34;&gt;ReversibleCryptography&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/mitaku/reversible_cryptography&#34;&gt;reversible_cryptography&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;という自作gemを使ってます。&lt;/p&gt;
+
+&lt;p&gt;READMEより&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;secret &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;
+encrypted_message &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #336600&#34;&gt;ReversibleCryptography&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #336600&#34;&gt;Message&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;encrypt(&lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;target_message&amp;quot;&lt;/span&gt;, secret)
+&lt;span style=&#34;color: #0099FF; font-style: italic&#34;&gt;#=&amp;gt; &amp;quot;md5:388eeae24576572f946e9043a2118b2d:salt:161-225-182-109-143-90-1-28:aes-256-cfb:DHY6DF3+iFzH36FMbeI=&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #336600&#34;&gt;ReversibleCryptography&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #336600&#34;&gt;Message&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;decrypt(encrypted_message, secret) &lt;span style=&#34;color: #555555&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;target_message&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #0099FF; font-style: italic&#34;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;簡単ですね。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;※上記例とは暗号化方式等,諸々違うため堅牢度合いは違います&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;※暗号化するものが簡単な英単語だったりする場合,MD5から逆引きされる可能性があります&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;※パスワードの強度は高いものを利用しています&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;もう一工夫&#34;&gt;もう一工夫&lt;/h3&gt;
+
+&lt;p&gt;Railsに限った話ではないですがアプリでの利用方法も記載します&lt;/p&gt;
+
+&lt;p&gt;各種設定はyamlファイルに記載することが多く、
+このようにYAMLのプライベートタイプを追加し環境変数を利用するようにしています。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #00AA88; font-weight: bold&#34;&gt;ReversibleEncryptedString&lt;/span&gt; &lt;span style=&#34;color: #555555&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #336600&#34;&gt;BasicObject&lt;/span&gt;
+  &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #CC00FF&#34;&gt;initialize&lt;/span&gt;(str)
+    &lt;span style=&#34;color: #003333&#34;&gt;@str&lt;/span&gt; &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; str
+  &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;end&lt;/span&gt;
+
+  &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #CC00FF&#34;&gt;decrypted_string&lt;/span&gt;
+    &lt;span style=&#34;color: #003333&#34;&gt;@raw&lt;/span&gt; &lt;span style=&#34;color: #555555&#34;&gt;||=&lt;/span&gt; &lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #336600&#34;&gt;ReversibleCryptography&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #336600&#34;&gt;Message&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;decrypt(&lt;span style=&#34;color: #003333&#34;&gt;@str&lt;/span&gt;, &lt;span style=&#34;color: #555555&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color: #336600&#34;&gt;ENV&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;REVERSIBLE_CRYPTOGRAPY_SECRET&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;]&lt;/span&gt;)
+  &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;end&lt;/span&gt;
+
+  alias_method &lt;span style=&#34;color: #FFCC33&#34;&gt;:to_s&lt;/span&gt;, &lt;span style=&#34;color: #FFCC33&#34;&gt;:decrypted_string&lt;/span&gt;
+
+  &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #CC00FF&#34;&gt;method_missing&lt;/span&gt;(&lt;span style=&#34;color: #336666&#34;&gt;method&lt;/span&gt;, &lt;span style=&#34;color: #555555&#34;&gt;*&lt;/span&gt;args)
+    decrypted_string&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;__send__(&lt;span style=&#34;color: #336666&#34;&gt;method&lt;/span&gt;, &lt;span style=&#34;color: #555555&#34;&gt;*&lt;/span&gt;args)
+  &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;end&lt;/span&gt;
+&lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;end&lt;/span&gt;
+
+&lt;span style=&#34;color: #336600&#34;&gt;YAML&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;add_private_type(&lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;Encrypted&amp;quot;&lt;/span&gt;) &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;do&lt;/span&gt; &lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt;_type, val&lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt;
+  &lt;span style=&#34;color: #336600&#34;&gt;ReversibleEncryptedString&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;new(val)
+&lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;aws:
+  endpoint: &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;ec2.ap-northeast-1.amazonaws.com&amp;quot;&lt;/span&gt;
+  access_key_id: &lt;span style=&#34;color: #007788; font-weight: bold&#34;&gt;!x-private&lt;/span&gt;:Encrypted &amp;quot;md5:109a42207275ce753e4923575ace3e12:salt:255-105-253-88-5-107-47-24:aes-256-cfb:4n++p1w8WZrjzmjna8W1mqh6PSA=&amp;quot;
+  secret_access_key: &lt;span style=&#34;color: #007788; font-weight: bold&#34;&gt;!x-private&lt;/span&gt;:Encrypted &amp;quot;md5:7844e3da7a807eb915207f7a36d4087b:salt:54-109-31-32-93-207-203-85:aes-256-cfb:l1OeNofj0C+vlsWfPfrTwQ==&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;環境変数の設定には&lt;a href=&#34;https://github.com/bkeepers/dotenv&#34;&gt;Dotenv&lt;/a&gt;を利用しているところもあります。&lt;/p&gt;
+
+&lt;h3 id=&#34;reversiblecryptographyの活用プロダクト&#34;&gt;ReversibleCryptographyの活用プロダクト&lt;/h3&gt;
+
+&lt;p&gt;弊社sue445さんのgemでも利用されています!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sue445/itamae-plugin-resource-encrypted_remote_file&#34;&gt;itamae-plugin-resource-encrypted_remote_file gem&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://sue445.hatenablog.com/entry/2015/05/09/185807&#34;&gt;itamae-plugin-resource-encrypted_remote_file を作った&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;おわりに&#34;&gt;おわりに&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;情報漏えいは人が原因のほうが多い!&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;意識をしつつ、健全な開発をしましょう!&lt;/li&gt;
+&lt;li&gt;知りたくない情報は暗号化してからもらいましょう!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;可逆暗号ができる&lt;a href=&#34;https://github.com/mitaku/reversible_cryptography&#34;&gt;ReversibleCryptography gem&lt;/a&gt;の紹介をしました
+
+&lt;ul&gt;
+&lt;li&gt;気が向いたら使ってみてもらえれば幸いです!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ということで次はnakajiさんです!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RubyKaigi2014で発表した</title>
+      <link>https://mitaku.github.io/blog/2014/09/22/rubykaigi-2014-speech/</link>
+      <pubDate>Mon, 22 Sep 2014 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2014/09/22/rubykaigi-2014-speech/</guid>
+      <description>&lt;p&gt;RubyKaigi 2014めっちゃいいKaigiだった。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;初めての発表&#34;&gt;初めての発表&lt;/h2&gt;
+
+&lt;p&gt;今回初めてSpeakerとしてRubyKaigiに参加した。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://rubykaigi.org/2014/presentation/S-TakumiMiura&#34;&gt;発表者情報&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;感想&#34;&gt;感想&lt;/h3&gt;
+
+&lt;p&gt;めっちゃ緊張した。&lt;/p&gt;
+
+&lt;p&gt;でも会議っぽい(?)写真取りたかったので、こんなことをしてみたり&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://photos-d.ak.instagram.com/hphotos-ak-xfa1/10654988_1524824864402355_142010473_n.jpg&#34; alt=&#34;photo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;セミインターナショナルなKaigiということで発表自体は日本語だったけれどもスライドは英語にしようと思ってせっせと準備をしました。&lt;/p&gt;
+
+&lt;p&gt;結構なスライドの枚数になってしまい通訳の方が大変だったんじゃないかとすごく思う。
+また、RubyKaigiのスタッフの方々がスライドチェックなどをしてくれて少しはまともな資料になりました！&lt;/p&gt;
+
+&lt;p&gt;通訳の方、スタッフのみなさんありがとうございました!&lt;/p&gt;
+
+&lt;h3 id=&#34;スライド&#34;&gt;スライド&lt;/h3&gt;
+
+&lt;script async class=&#34;speakerdeck-embed&#34; data-id=&#34;ed2e4fa0221e0132318076af556e37c5&#34; data-ratio=&#34;1.33333333333333&#34; src=&#34;//speakerdeck.com/assets/embed.js&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;gem-of-this-week-building-culture-and-making-gem&#34;&gt;&amp;ldquo;Gem of this Week&amp;rdquo; - building culture and making gem&lt;/h2&gt;
+
+&lt;p&gt;というタイトルで発表をした。&lt;/p&gt;
+
+&lt;p&gt;内容は僕が転職をして1年かけてカジュアルにgemを作るチームを作ってきた話。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;今週のgem&lt;/strong&gt;というコーナーで毎週のようにgemが更新されたり作成されていく環境を見せることができるようになったのでgemを作ることが&lt;strong&gt;特別&lt;/strong&gt;じゃなくしました。&lt;/p&gt;
+
+&lt;p&gt;その結果チームメンバーがカジュアルにgemを作るようになった。&lt;/p&gt;
+
+&lt;h4 id=&#34;想い&#34;&gt;想い&lt;/h4&gt;
+
+&lt;p&gt;今週のgemを初めた時の想いとしては&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;もっと楽したい。&lt;/li&gt;
+&lt;li&gt;楽しいことをしていたい。&lt;/li&gt;
+&lt;li&gt;同じことを繰り返したくない。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;だった。&lt;/p&gt;
+
+&lt;p&gt;発表することになった時に
+同じように共通化して社内gemみたいなの作って楽になる人たちはいっぱいいるんじゃないかと思った。
+僕のとったアプローチの紹介をすることによっていろんな人の生活が良くなればいいなぁなんて想いながら発表準備をしてました。&lt;/p&gt;
+
+&lt;h3 id=&#34;アプローチのまとめ&#34;&gt;アプローチのまとめ&lt;/h3&gt;
+
+&lt;h4 id=&#34;privateなgemserverを用意する&#34;&gt;privateなgemserverを用意する&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;弊社は&lt;a href=&#34;https://github.com/geminabox/geminabox&#34;&gt;geminabox&lt;/a&gt;を使ってる&lt;/li&gt;
+&lt;li&gt;privateなのでどんなgemをアップしても大丈夫&lt;/li&gt;
+&lt;li&gt;メンテされていないgemへの辛いモンキーパッチはforkしてgem化できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;※deployの観点からgemにしているほうが気楽だった&lt;/p&gt;
+
+&lt;p&gt;※Gemfileでgitのsourceを指定するという手段もある&lt;/p&gt;
+
+&lt;h4 id=&#34;自由にgitリポジトリを作れるようにする&#34;&gt;自由にgitリポジトリを作れるようにする&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;弊社はGitLabを使っている。&lt;/li&gt;
+&lt;li&gt;メンバーは自由に他のプロジェクトを見ることができる&lt;/li&gt;
+&lt;li&gt;メンバーは自由にプロジェクトを作ることができる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;コミュニケーションできる場を作る&#34;&gt;コミュニケーションできる場を作る&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;作ったgemのアナウンスをしたり、理想の開発とか語ったり&lt;/li&gt;
+&lt;li&gt;弊社は週に1回各チームのメインエンジニアが集まるミーティングがあり、そこでアナウンスをしたりしていた。(今週のgem)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;αとしてgemを作る障壁を下げていく&#34;&gt;+αとしてgemを作る障壁を下げていく&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;gemとはカジュアルに作るものであるというイメージ化 &lt;code&gt;今週のgem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;gemを簡単に作り、簡単にデプロイできるgemを作る &lt;code&gt;drecom_gem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;新卒の子にも作ってもらった&lt;/li&gt;
+&lt;li&gt;多くのgemを作っていくことによって、参考例をたくさん作った&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;雑記&#34;&gt;雑記&lt;/h3&gt;
+
+&lt;p&gt;読み原稿的なのも一緒にアップすればよかったな&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;別の記事で書きたいと思います!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://rubykaigi.org/2014/images/badge-for-speaker.png&#34; alt=&#34;speaker&#34; /&gt;
+&lt;img src=&#34;http://rubykaigi.org/2014/images/badge-for-official-sponsor.png&#34; alt=&#34;sponsor&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2013年 振り返り</title>
+      <link>https://mitaku.github.io/blog/2014/01/01/retrospective-2013/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2014/01/01/retrospective-2013/</guid>
+      <description>&lt;p&gt;転職記事書いてから全く書いてなかった三浦です。&lt;/p&gt;
+
+&lt;p&gt;あけましておめでとうございます。&lt;/p&gt;
+
+&lt;p&gt;もう2014年になっちゃったけど、2013年の振り返り&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;買ってよかったもの&#34;&gt;買ってよかったもの&lt;/h2&gt;
+
+&lt;h3 id=&#34;ipad-mini-retina&#34;&gt;iPad mini Retina&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;もっぱらKindleしか使ってないからKindleで良かった説は否めないが、Webページ見たり映画みたりで活躍してるので買ってよかった&lt;/li&gt;
+&lt;li&gt;容量はいつも悩むけど正直そんないらんのだよな&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;ps3&#34;&gt;PS3&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ASBをやるために買ったけど&amp;hellip;ASB&amp;hellip;&amp;hellip;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;torne-と-hdmiケーブル&#34;&gt;torne と HDMIケーブル&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HDMI綺麗、torne便利。nasneも買ってもいいかもなぁと思った&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;sony-ステレオヘッドホン-mdr-7506&#34;&gt;SONY ステレオヘッドホン MDR-7506&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;お薦めされたので買っちゃった。職場で集中する時用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;ジョジョの奇妙な冒険1部-7部-電子書籍&#34;&gt;ジョジョの奇妙な冒険1部〜7部(電子書籍)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;大人買い&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;ダーツ&#34;&gt;ダーツ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;練習中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;ソルティライチ1-5l-8本セット-14&#34;&gt;ソルティライチ1.5L * 8本セット * 14&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2013/12/22: 2&lt;/li&gt;
+&lt;li&gt;2013/11/22: 2&lt;/li&gt;
+&lt;li&gt;2013/10/28: 2&lt;/li&gt;
+&lt;li&gt;2013/09/23: 2&lt;/li&gt;
+&lt;li&gt;2013/08/22: 2&lt;/li&gt;
+&lt;li&gt;2013/07/01: 1&lt;/li&gt;
+&lt;li&gt;2013/04/01: 1&lt;/li&gt;
+&lt;li&gt;2013/02/13: 1&lt;/li&gt;
+&lt;li&gt;2013/01/20: 1
+買いすぎですね&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;転職&#34;&gt;転職&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2013年の7月に転職しました。
+&lt;img src=&#34;http://farm6.staticflickr.com/5473/11669935045_f2e4a11d57_n.jpg&#34; alt=&#34;photo&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;この辺の話はまた別の記事にしよう。Zzz&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;全然振り返ってないや&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>株式会社オプティムを退職しました。</title>
+      <link>https://mitaku.github.io/blog/2013/07/15/retired-from-optim/</link>
+      <pubDate>Mon, 15 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/15/retired-from-optim/</guid>
+      <description>&lt;h2 id=&#34;三浦-会社やめるってよ&#34;&gt;三浦、会社やめるってよ&lt;/h2&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;私事ですが2013/07/14に株式会社オプティムを退職しました。&lt;/p&gt;
+
+&lt;p&gt;新卒として入社して4年と少しの間、とても濃密な時間を過ごし、多くの人と一緒に色々なことができました。&lt;/p&gt;
+
+&lt;p&gt;苦しい時間もいっぱいありましたが、とても楽しい時間を素敵な仲間と過ごせたと思います。&lt;/p&gt;
+
+&lt;p&gt;自分自身が叩いた&lt;code&gt;rails new&lt;/code&gt;コマンドで作られたプロダクトが何個も世に出ました。
+これらは自分の子供らのようなものだと思うので、とても思い入れが深いです。
+それ故に、政治的な事情で技術的負債を抱え続けなければならなくなったりすると思いをぶつけたり、不貞腐れたりしました（笑）&lt;/p&gt;
+
+&lt;p&gt;次第にコードを書く時間が減ってきて、一日中メールを書いていたり、レビューしたり、割り込みに対する対応を1日中やっていて本質的な問題の技術的解決もできなくなってき、やりたいことが公私共にできなくなってきて自分らしくないなと思い始めていました。
+1年とモヤモヤしたまま時が過ぎて、多くの先輩と話をしてきて、短い人生なのだから今やりたいことをやらなければいけないなと思い、転職に至りました。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;いつやるの？今でしょ。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;何をやっていたか&#34;&gt;何をやっていたか&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主にRailsでのWeb開発&lt;/li&gt;
+&lt;li&gt;火消し&lt;/li&gt;
+&lt;li&gt;広報&lt;/li&gt;
+&lt;li&gt;社内勉強会&lt;/li&gt;
+&lt;li&gt;リーダー&lt;/li&gt;
+&lt;li&gt;社内ツール作成&lt;/li&gt;
+&lt;li&gt;Bot作成&lt;/li&gt;
+&lt;li&gt;etc&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;品質保証であったり、研究開発だったり幅広く経験させてもらえました。
+基本的にはRuby、Rubyしていたと思います。&lt;/p&gt;
+
+&lt;p&gt;Railsのバージョンを上げる仕事をしたり、&lt;code&gt;image_path&lt;/code&gt;とかこのへんのメソッドを上書きする暗黒プロジェクトを経験したり
+新規でプロダクトを開発したり、残念なブランチが切られないようにRails Engine化したり、色々と試行錯誤して、成長してきたんじゃないかな&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;戦友たちへ&#34;&gt;戦友たちへ&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;どうもありがとう。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;何個か経験した炎上案件、正直肉体的に苦しかったことが多かった気がする。&lt;/p&gt;
+
+&lt;p&gt;でも精神的に苦しかったかというと、うん、苦しかったな。&lt;/p&gt;
+
+&lt;p&gt;その中でも一緒に苦しい時間を共にした戦友が何人かいる。&lt;/p&gt;
+
+&lt;p&gt;ボロボロになりながら、製品を作って、それを納品した日の達成感を今でも覚えています。&lt;/p&gt;
+
+&lt;p&gt;本当にありがとう。そして、お互い身体に気をつけよう。&lt;/p&gt;
+
+&lt;h2 id=&#34;今後&#34;&gt;今後&lt;/h2&gt;
+
+&lt;p&gt;オプティムで学んだ事を活かして、BtoBから少し離れたところで挑戦します。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://farm3.staticflickr.com/2872/9288755191_52dd792217_n.jpg&#34; alt=&#34;photo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今まで以上にコミュニティでの活動はしていきたいと思っているのでこの狭い業界のどこかであったらよろしくお願いします。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.amazon.co.jp/registry/wishlist/5T0A6N2ZGEZD&#34;&gt;wishlist&lt;/a&gt;も晒しておきますね。&lt;/p&gt;
+
+&lt;p&gt;オプティムのみなさん、社外のみなさん、ありがとうございました。&lt;/p&gt;
+
+&lt;p&gt;ではでは、次回作にご期待ください。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Life is short!&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails4でのRSpec自動実行環境の作成</title>
+      <link>https://mitaku.github.io/blog/2013/07/10/rails4-testing-automation/</link>
+      <pubDate>Wed, 10 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/10/rails4-testing-automation/</guid>
+      <description>&lt;p&gt;Rails4アプリでファイルの変更を検知し、RSpecを実行するようにする。
+テストの結果はGrowlにて通知するようにする&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;環境&#34;&gt;環境&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.0.0&lt;/li&gt;
+&lt;li&gt;Rails 4.0.0&lt;/li&gt;
+&lt;li&gt;Mac OS X 10.8&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;利用するもの&#34;&gt;利用するもの&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rspec
+
+&lt;ul&gt;
+&lt;li&gt;BDDフレームワーク&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Guard
+
+&lt;ul&gt;
+&lt;li&gt;監視・実行の管理&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Growl
+
+&lt;ul&gt;
+&lt;li&gt;通知&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Spring
+
+&lt;ul&gt;
+&lt;li&gt;事前にアプリを立て、コマンドの実行を高速化する&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;準備&#34;&gt;準備&lt;/h2&gt;
+
+&lt;h3 id=&#34;gemfileの更新&#34;&gt;Gemfileの更新&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;group &lt;span style=&#34;color: #FFCC33&#34;&gt;:development&lt;/span&gt;, &lt;span style=&#34;color: #FFCC33&#34;&gt;:test&lt;/span&gt; &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;do&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;rspec-rails&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;spring&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;guard&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;guard-rspec&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;growl&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;bundle install&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;rspec-install&#34;&gt;rspec:install&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;spring g rspec:install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;spec/spec_helper.rb&lt;/code&gt;などが作成される&lt;/p&gt;
+
+&lt;h3 id=&#34;guard-init&#34;&gt;guard init&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gurad init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Guardfile&lt;/code&gt;というGuardの設定を記述するファイルが生成される&lt;/p&gt;
+
+&lt;h3 id=&#34;guard-rspecでspringを使うようにする&#34;&gt;guard rspecでspringを使うようにする&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;guard :rspec do&lt;/code&gt;という記述を&lt;code&gt;guard :rspec, spring: true do&lt;/code&gt;に変更する
+これによってguardでrspecが動く場合にspringで立てたテスト用のプロセスで実行されるようになる&lt;/p&gt;
+
+&lt;p&gt;基本的に作業はこれだけ。
+あとはファイルを更新してテストが走ったり、通知がいくことを確認できれば問題なし。&lt;/p&gt;
+
+&lt;p&gt;かなり簡単に自動でテストが回る環境が作れた。
+無意識にテストが実行されフィードバックが返ってくるのはとてもよい。&lt;/p&gt;
+
+&lt;p&gt;Rails4が出たということで&lt;code&gt;database_cleaner&lt;/code&gt;を始め開発環境を再度整えて行きたい&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HomebrewでRictyをインストール</title>
+      <link>https://mitaku.github.io/blog/2013/07/08/installed-ricty/</link>
+      <pubDate>Mon, 08 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/08/installed-ricty/</guid>
+      <description>&lt;p&gt;個人的にとても見やすいフォントのRictyをHomebrewで手軽にインストールできるみたいですね。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://morizyun.github.io/blog/ricty-font-homebrew-mac/&#34;&gt;プログラムに最適なフォント『Ricty』を超簡単にインストール[Mac限定]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;こちらのとおりに&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew tap sanemat/font
+brew install ricty
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;しばらくするとインストールが終わるので、表示されるメッセージに従ってコマンドを実行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;***************************************************
+Generated files:
+  /usr/local/Cellar/ricty/3.2.1/share/fonts/Ricty-Bold.ttf
+  /usr/local/Cellar/ricty/3.2.1/share/fonts/Ricty-Regular.ttf
+  /usr/local/Cellar/ricty/3.2.1/share/fonts/RictyDiscord-Bold.ttf
+  /usr/local/Cellar/ricty/3.2.1/share/fonts/RictyDiscord-Regular.ttf
+***************************************************
+To install Ricty:
+  $ cp -f /usr/local/Cellar/ricty/3.2.1/share/fonts/Ricty*.ttf ~/Library/Fonts/
+  $ fc-cache -vf
+***************************************************
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんなメッセージが出ていました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew info ricty
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で再度見れます。&lt;/p&gt;
+
+&lt;p&gt;便利便利&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails4でアプリケーションを作る</title>
+      <link>https://mitaku.github.io/blog/2013/07/07/generate-rails4-app/</link>
+      <pubDate>Sun, 07 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/07/generate-rails4-app/</guid>
+      <description>&lt;p&gt;&lt;sup&gt;6&lt;/sup&gt;&amp;frasl;&lt;sub&gt;25&lt;/sub&gt; &lt;a href=&#34;http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/&#34;&gt;Rails4.0.0がリリース&lt;/a&gt;されました。&lt;/p&gt;
+
+&lt;p&gt;ということで早速Rails4でプロジェクトを作成。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.0.0-p247&lt;/li&gt;
+&lt;li&gt;Rails 4.0.0&lt;/li&gt;
+&lt;li&gt;Mac OS X 10.8.7&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rails
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;プロジェクトの作成&#34;&gt;プロジェクトの作成&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;rails new your_project_name -B -T -d mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;rails new後のbundle installがとても嫌いなのでskip-bundleをしたいので&lt;code&gt;-B&lt;/code&gt;オプションを付与&lt;/li&gt;
+&lt;li&gt;test-unitではなくRspecを使いたいので&lt;code&gt;-T&lt;/code&gt;でTest::Unitのファイルが作成されるのを回避&lt;/li&gt;
+&lt;li&gt;今回はDBをMySQLにしたかったので&lt;code&gt;-d mysql&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;デフォルトはsqlite3&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;tree&#34;&gt;tree&lt;/h3&gt;
+
+&lt;p&gt;作られたファイルの確認&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.
+├── Gemfile
+├── README.rdoc
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── images
+│   │   ├── javascripts
+│   │   │   └── application.js
+│   │   └── stylesheets
+│   │       └── application.css
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   └── concerns
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── mailers
+│   ├── models
+│   │   └── concerns
+│   └── views
+│       └── layouts
+│           └── application.html.erb
+├── bin
+│   ├── bundle
+│   ├── rails
+│   └── rake
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── backtrace_silencers.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── mime_types.rb
+│   │   ├── secret_token.rb
+│   │   ├── session_store.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   └── en.yml
+│   └── routes.rb
+├── config.ru
+├── db
+│   └── seeds.rb
+├── lib
+│   ├── assets
+│   └── tasks
+├── log
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── favicon.ico
+│   └── robots.txt
+├── tmp
+│   └── cache
+│       └── assets
+└── vendor
+    └── assets
+        ├── javascripts
+        └── stylesheets
+
+31 directories, 34 files
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;binやapp/models/concernsなどが増えていますね!&lt;/p&gt;
+
+&lt;h2 id=&#34;rspec-railsの導入&#34;&gt;rspec-railsの導入&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/rspec/rspec-rails&#34;&gt;rspec/rspec-rails&lt;/a&gt;に従って&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Gemfileに追加
+group :development, :test do
+  gem &#39;rspec-rails&#39;, &#39;~&amp;gt; 2.0&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;rails g rspec:install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;db-create&#34;&gt;db:create&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;rake db:crate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;server-start&#34;&gt;server start&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;rails s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;そんな訳でとりあえず起動した。&lt;/p&gt;
+
+&lt;p&gt;rspecのくだりは別にいらなかったね。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>クリップボードを有効にしたVimを使う</title>
+      <link>https://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard/</link>
+      <pubDate>Sat, 06 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/06/vim-enabled-clipboard/</guid>
+      <description>&lt;p&gt;MacのVimは初期状態でclipboardが有効になっていなくて辛いのでvimからclipboardが使えるようにする&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vim --version |grep clipboard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;結果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-clientserver -clipboard +cmdline_compl +cmdline_hist +cmdline_info +comments
+ -xterm_clipboard -xterm_save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;現時点ではHomebrewのVimのFormulaはclipboardに対するオプションがないみたいなのでMercurialからソースを持ってきて対応する&lt;/p&gt;
+
+&lt;h2 id=&#34;1-hgコマンドを使えるようにする&#34;&gt;1. hgコマンドを使えるようにする&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install hg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-vimをinstall&#34;&gt;2. vimをinstall&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;hg clone https://vim.googlecode.com/hg/ /tmp/vim
+cd /tmp/vim
+make clean
+./configure --prefix=/usr/local --enable-multibyte --enable-xim --enable-fontset --enable-rubyinterp --enable-perlinterp --with-features=huge --disable-selinux
+make
+make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-確認&#34;&gt;3. 確認&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/vim --version |grep clipboard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;+clipboard&lt;/code&gt;が含まれていればOK&lt;/p&gt;
+
+&lt;p&gt;configureに与えるものは各自必要なものを指定すること&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>高専カンファレンス5周年記念パーティー</title>
+      <link>https://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary/</link>
+      <pubDate>Thu, 27 Jun 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary/</guid>
+      <description>&lt;p&gt;6/15に行われた高専カンファレンス5周年記念パーティーに参加してきた。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;高専カンファレンスで人生を(良い意味で)狂わされた自分自身としては、5周年というのはとても感慨深いものがあるなぁと老害オーラを出していた。&lt;/p&gt;
+
+&lt;p&gt;なんだかんだでいつも発表したり運営側にいるので、今回は1パーティーの参加者としておとなしくしていようと思ったのだが、なんというか会場の空気にやられて飛び入りLTをさせていただいた。（運営のみなさん、ありがとうございました）&lt;/p&gt;
+
+&lt;h2 id=&#34;心地良い空気&#34;&gt;心地良い空気&lt;/h2&gt;
+
+&lt;p&gt;全然準備できなかったので、ネタもなにもないし、〆方も失敗した。&lt;/p&gt;
+
+&lt;p&gt;伝えたかったのは「空気」の話&lt;/p&gt;
+
+&lt;p&gt;高専カンファレンスに限った話じゃないが、いろんなイベントやいろんなコミュニティがあって、そこには様々な雰囲気があって、多くの楽しさや、問題があると思う。&lt;/p&gt;
+
+&lt;p&gt;僕はあの空気が好きだし、バカみたいなことをしているのを見ていてもそれなりに楽しい。&lt;/p&gt;
+
+&lt;p&gt;あの場には多くのエンターテイナーがいてコンテンツが充実していて楽しい。&lt;/p&gt;
+
+&lt;p&gt;ネットワーク職人だったり、配信職人もいるためUstreamで配信を見ていれば十分楽しいというのもわかる。&lt;/p&gt;
+
+&lt;p&gt;でも、Ustreamじゃ空気が伝わらない。&lt;/p&gt;
+
+&lt;p&gt;参加してみないと分からないものがあるから、試しに1度参加してみてもらいたい。&lt;/p&gt;
+
+&lt;p&gt;「高専カンファレンスに参加しにくい。」というのもわかる。&lt;/p&gt;
+
+&lt;p&gt;誰も知らない、何も知らない状態で参加しようとするのは勇気がいるなぁと思う。&lt;/p&gt;
+
+&lt;p&gt;それだけ、高専カンファレンスは浸透してきているし、複数回参加したことがある人が増えたり、TwitterやFacebookを始めとして参加者間でコミュニケーションが取られているのが事実としてあるので、内輪感が出てしまう。&lt;/p&gt;
+
+&lt;p&gt;(内輪感がないメジャーな勉強会をそんなに知らないので高専カンファレンス特有かはわからないが)&lt;/p&gt;
+
+&lt;p&gt;でも、あのコミュニティは暖かいから、ぜひ参加してみてほしい。&lt;/p&gt;
+
+&lt;p&gt;その上で、あの空気が好きだったら、ぜひ作る側になってほしい。&lt;/p&gt;
+
+&lt;p&gt;内輪感を作るなというのも難しい話だから、そこはできてしまうものとして考えた上で、初めて参加してくれる人への配慮を&lt;strong&gt;運営を含めた参加者&lt;/strong&gt;ができるととても素敵だなぁと思う。&lt;/p&gt;
+
+&lt;h2 id=&#34;さいごに&#34;&gt;さいごに&lt;/h2&gt;
+
+&lt;p&gt;運営のみなさん、会場を提供していただいたVOYAGE GROUPさん、参加者のみなさん&lt;/p&gt;
+
+&lt;p&gt;素敵な空気と時間をありがとうございました。とても楽しかったです。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Happy anniversary!&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails寺子屋 x kosenconfを開催した</title>
+      <link>https://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/</link>
+      <pubDate>Wed, 27 Mar 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/</guid>
+      <description>&lt;p&gt;2013/03/23に&lt;a href=&#34;http://rails.terakoya.io/&#34;&gt;Rails寺子屋&lt;/a&gt;というイベントを開催し、講師という立場で参加した。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;午前10時という時間から開始ということで、寝坊だったり、遠方からの参加者は朝から東京に投げ出され大変そうだった印象。&lt;/p&gt;
+
+&lt;p&gt;あと、鉄道のICカード統一で駅が大変なことになっていた。速い人は5時くらいから並んでいるとか…&lt;/p&gt;
+
+&lt;p&gt;さて、寺子屋ですが&lt;/p&gt;
+
+&lt;p&gt;@RooandQoo ちゃんと一緒に1グループ担当しました。この日のために服装を揃えました（嘘です）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.flickr.com/photos/sora_h/8583674262/&#34; title=&#34;P3233335 by sora_h, on Flickr&#34;&gt;&lt;img src=&#34;http://farm9.staticflickr.com/8509/8583674262_aab196bc06_z.jpg&#34; width=&#34;640&#34; height=&#34;480&#34; alt=&#34;P3233335&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;午前&#34;&gt;午前&lt;/h3&gt;
+
+&lt;p&gt;午前中は環境構築をする時間として設けていて環境構築をしつつ、終わったメンバーと対談したりRubyで簡単なプログラムを書いてみたりしてました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RubyでFizzBuzzしてみたり&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336666&#34;&gt;puts&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;times&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;map { &lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt;i&lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt; (s &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; ((i &lt;span style=&#34;color: #555555&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;3&lt;/span&gt;)&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;zero? ? &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;Fizz&amp;#39;&lt;/span&gt; : &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #555555&#34;&gt;+&lt;/span&gt; ((i &lt;span style=&#34;color: #555555&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;5&lt;/span&gt;)&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;zero? ? &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;Buzz&amp;#39;&lt;/span&gt; : &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;))&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;empty? ? i : s }
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;与えた文字をランダムで利用して140文字の文字列を作る遊びなど (下の例ではsを与える文字にしてます)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;s &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;みうらたくみ&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #336666&#34;&gt;puts&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;140&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;times&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;map { s&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;chars&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;sample }&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;join
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;午後&#34;&gt;午後&lt;/h3&gt;
+
+&lt;p&gt;ワークショップのメインということでRailsを使って簡単なアプリケーションを作ってみようというコーナーでした
+ここでは&lt;a href=&#34;http://railsgirls-jp.github.com/&#34;&gt;Rails Girls&lt;/a&gt;というイベントの教材を使って、&lt;a href=&#34;http://www.heroku.com/&#34;&gt;Heroku&lt;/a&gt;にアプリケーションをデプロイするところまでやりました。&lt;/p&gt;
+
+&lt;p&gt;まずは、この教材の出来がとてもよい。&lt;/p&gt;
+
+&lt;p&gt;反日でRailsアプリを1つ作り、Herokuにデプロイし1サービスの提供者になれる。&lt;/p&gt;
+
+&lt;p&gt;基本的に教材にそってやっていき、都度必要な説明を講師陣で加えていくという形で行なって行きました。&lt;/p&gt;
+
+&lt;p&gt;無事全員がHerokuにデプロイするところまで行きました。素敵&lt;/p&gt;
+
+&lt;h3 id=&#34;懇親会&#34;&gt;懇親会&lt;/h3&gt;
+
+&lt;p&gt;みんなでピザを頬張り、ワイワイしてました。&lt;/p&gt;
+
+&lt;h3 id=&#34;感想&#34;&gt;感想&lt;/h3&gt;
+
+&lt;p&gt;Rails Girlsの教材はとてもよい。&lt;/p&gt;
+
+&lt;p&gt;Railsの手軽さは体験してもらうことはできたと思う。&lt;/p&gt;
+
+&lt;p&gt;ただし、学習コストが高いRailsなのでアフターサポート的なものがあるとよいのかなぁと思いました。&lt;/p&gt;
+
+&lt;p&gt;気軽に&lt;a href=&#34;https://twitter.com/mitaku&#34;&gt;@mitaku&lt;/a&gt;までどうぞ！&lt;/p&gt;
+
+&lt;p&gt;参加者のみなさん、講師の皆さん、たくさんの関係者のみなさんありがとうございました！&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;楽しいRailsライフを!!&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rubyとの付き合い</title>
+      <link>https://mitaku.github.io/blog/2013/03/18/why-why-why-ruby/</link>
+      <pubDate>Mon, 18 Mar 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/03/18/why-why-why-ruby/</guid>
+      <description>&lt;p&gt;もうすぐ社会人になってから4年が経とうとしている。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;その社会人生活の中で「Ruby」という素晴らしいツールと触れていた時間がとても多かった&lt;/p&gt;
+
+&lt;p&gt;振り返ってみたので、形に残そうと思う。&lt;/p&gt;
+
+&lt;p&gt;長文になっちゃいそうだ&lt;/p&gt;
+
+&lt;h3 id=&#34;ボクはrubyが好きだ&#34;&gt;ボクはRubyが好きだ&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Rubyをキメると気持ちいい&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;RubyKaigi2008のときにまつもとゆきひろさんの名言&lt;/p&gt;
+
+&lt;p&gt;Rubyを書いていると楽しい&lt;/p&gt;
+
+&lt;p&gt;Rubyっぽく書けたらすごく嬉しい&lt;/p&gt;
+
+&lt;p&gt;ボクはRubyが好きだ。&lt;/p&gt;
+
+&lt;p&gt;Rubyを使っている人たちも好きだ&lt;/p&gt;
+
+&lt;p&gt;Rubyコミュニティが好きだ&lt;/p&gt;
+
+&lt;h3 id=&#34;仕事の武器としてのruby&#34;&gt;仕事の武器としてのRuby&lt;/h3&gt;
+
+&lt;p&gt;現在Rubyを1つの武器として、仕事をしている。&lt;/p&gt;
+
+&lt;p&gt;最近の嬉しいニュースとして&lt;/p&gt;
+
+&lt;p&gt;2012年の12月に片手間で進んだプロジェクトが最近リリースされ、はじめてのユーザーがついたらしい。嬉しい。&lt;/p&gt;
+
+&lt;p&gt;学生時代はRubyを触ったことなんかなかったが、今や立派な武器になっている。&lt;/p&gt;
+
+&lt;h4 id=&#34;きっかけ&#34;&gt;きっかけ&lt;/h4&gt;
+
+&lt;p&gt;2009年の4月、アルバイトをしていた現在の会社に新入社員として入社した。&lt;/p&gt;
+
+&lt;p&gt;当時は日本の家庭に配布されるWindowsアプリケーションの検証作業をしていた。&lt;/p&gt;
+
+&lt;p&gt;大黒柱的な存在のプロジェクトの一員として時間を過ごしていた。（はず）&lt;/p&gt;
+
+&lt;p&gt;ただ、Excelの表を埋める作業というのはボクは好きになれず、楽しくはないのでモヤモヤしてた。&lt;/p&gt;
+
+&lt;p&gt;風通しのよい職場なので日報や呑み会の席で「コード書きたい！」的なことを延々と言ってた。&lt;/p&gt;
+
+&lt;p&gt;時には社長に、時には開発の責任者に、時にはプロジェクトのマネージャに&lt;/p&gt;
+
+&lt;p&gt;今思うと、よく言ってたなぁ&lt;/p&gt;
+
+&lt;p&gt;そしたら6月の夜中に、当時のマネージャから異動の話をもらった。&lt;/p&gt;
+
+&lt;p&gt;そのシーンがすごく印象的で今でも覚えている。Rubyと付き合い始めるきっかけである。&lt;/p&gt;
+
+&lt;p&gt;異動先のプロジェクトは研究開発プロジェクト。&lt;/p&gt;
+
+&lt;p&gt;そこで&lt;a href=&#34;http://rubyonrails.org&#34;&gt;Ruby on Rails&lt;/a&gt;を使って世界を変えるアプリケーションの開発をすることになった。&lt;/p&gt;
+
+&lt;h4 id=&#34;挑戦と野望&#34;&gt;挑戦と野望&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;当時のスキルセット
+
+&lt;ul&gt;
+&lt;li&gt;C/C++ (学校で習う程度)&lt;/li&gt;
+&lt;li&gt;C# (趣味でアプリケーション作る程度)&lt;/li&gt;
+&lt;li&gt;Windows (Win32 API叩いて遊ぶ程度)&lt;/li&gt;
+&lt;li&gt;Linux (基本的な操作がCUIでできる程度)&lt;/li&gt;
+&lt;li&gt;HTML/CSS/Javascript (趣味でホームページ作る程度)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そこはとても苦しく、楽しい世界だった。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby&lt;/li&gt;
+&lt;li&gt;Ruby on Rails&lt;/li&gt;
+&lt;li&gt;Webアプリケーション&lt;/li&gt;
+&lt;li&gt;MVC&lt;/li&gt;
+&lt;li&gt;MySQL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;全てが新鮮で、全てが力不足で、全てが刺激的だった.&lt;/p&gt;
+
+&lt;p&gt;環境構築には当たり前のように躓き、貧弱な&lt;code&gt;.vimrc&lt;/code&gt;で戦っていたなぁ…&lt;/p&gt;
+
+&lt;p&gt;当時は&lt;code&gt;bundler&lt;/code&gt;なんてなかったから、アプリケーションの起動にすら苦労した記憶がある&lt;/p&gt;
+
+&lt;p&gt;若いメンバーで構成されているプロジェクトで、社内にRubyのエンジニアはほとんどいなかった。&lt;/p&gt;
+
+&lt;p&gt;なるべくして、Rails Wayから外れたアプリケーションになっていた。&lt;/p&gt;
+
+&lt;p&gt;ボクとしては、すごくチャンスに感じていて&lt;/p&gt;
+
+&lt;p&gt;これなら、社内で(Ruby on Railsの)エンジニアとしてトップに立てるんじゃないかと思って、そこからRubyとの激しい付き合いが始まった。&lt;/p&gt;
+
+&lt;p&gt;社内で勉強会を開催したり、趣味でアプリケーションを作ってみたり、来週作るであろう機能を家でプロトタイピングしてみたり&lt;/p&gt;
+
+&lt;p&gt;とにかく手を動かしていた印象がある。&lt;/p&gt;
+
+&lt;p&gt;未熟者のボクに多くのことを教えてくださった、&lt;/p&gt;
+
+&lt;p&gt;プロジェクトのメインプログラマの人たちがやめるタイミングが1つの進化のきっかけだったのかもしれない。&lt;/p&gt;
+
+&lt;p&gt;よりRubyやRailsの知識が求められるようになって、より高度なことを任せてもらえるようになった。&lt;/p&gt;
+
+&lt;p&gt;疑問の答えを持っている人が社内にいなくなったときに、外の世界へ飛び出した。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RubyKaigi&lt;/li&gt;
+&lt;li&gt;Coffee.rb&lt;/li&gt;
+&lt;li&gt;デブサミ&lt;/li&gt;
+&lt;li&gt;etc&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;外の世界は刺激的で、何かを患っている人がいっぱいいて、仲間がいて、楽しかった。&lt;/p&gt;
+
+&lt;h4 id=&#34;暗黒魔法&#34;&gt;暗黒魔法&lt;/h4&gt;
+
+&lt;p&gt;Ruby on RailsにはPluginという機構がある。&lt;/p&gt;
+
+&lt;p&gt;事業の拡大とともにアプリケーションを使ってくれる人が増え、要望も増え&lt;/p&gt;
+
+&lt;p&gt;ブランチ開発にも飽きたのでプラグインで差分を吸収できるようにしたかった。&lt;/p&gt;
+
+&lt;p&gt;Pluginを使うにはRails2.3に上げる必要があったので、脱線しているRailsレガシープロジェクトを2.3に上げる必要が出てきた。&lt;/p&gt;
+
+&lt;p&gt;すげー苦しかった。(笑)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;そもそもアプリケーションが起動しない&lt;/li&gt;
+&lt;li&gt;ありがちなメソッド名のヘルパーがRailsに追加されて(プロジェクトで使ってて)動かなかった&lt;/li&gt;
+&lt;li&gt;動かないGemは出てきてモンキーパッチを当てる&lt;/li&gt;
+&lt;li&gt;そもそも通ってないテストコードがいっぱいいた&lt;/li&gt;
+&lt;li&gt;嘘をついているコメント&lt;/li&gt;
+&lt;li&gt;意図が分からないコード&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;こんな状態なので作業自体が見積もれなくて、進捗も分からなかったし有識者もいなくて、困った。&lt;/p&gt;
+
+&lt;p&gt;結果的にプロジェクトへの理解は深まったし、Railsにも少し詳しくなれた気がする。&lt;/p&gt;
+
+&lt;p&gt;そうそう、この時のハイライトといったらとある目的を達成するために&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;image_path&lt;/code&gt;とか&lt;code&gt;image_tag&lt;/code&gt;に&lt;code&gt;alias_method_chain&lt;/code&gt;とかしてる当たりがエグい&lt;/p&gt;
+
+&lt;p&gt;黒魔術とかそういう次元じゃなくて暗黒魔法だった。今もそれを利用されてて、泣きたい。&lt;/p&gt;
+
+&lt;h4 id=&#34;自由な空&#34;&gt;自由な空&lt;/h4&gt;
+
+&lt;p&gt;2年目の3月に大きな挑戦のチャンスをもらえた。&lt;/p&gt;
+
+&lt;p&gt;スマートフォンの法人利用が増えてきて、新たなビジネスの波が生まれた。&lt;/p&gt;
+
+&lt;p&gt;そのとき、以前から関わっているプロジェクトのスマートフォン対応が必要になった。&lt;/p&gt;
+
+&lt;p&gt;ユースケースも、機能も違うこともあり、レガシープロジェクトにそれをのっけるよりは&lt;/p&gt;
+
+&lt;p&gt;新たなプロジェクトとして１から作ることになった。&lt;/p&gt;
+
+&lt;p&gt;当時でてきたRails3での初プロジェクト、多くの部分を開発させてもらえた。&lt;/p&gt;
+
+&lt;p&gt;多少の不安と、ワクワク、ドキドキに支配された時間だった。&lt;/p&gt;
+
+&lt;p&gt;なにより、足枷がない、フットワークが軽い状態の開発は初めてで、とても幸せな時間を過ごしていたんだなと、今になって思う。&lt;/p&gt;
+
+&lt;p&gt;当然エンジニアがいないから、開発は楽じゃなかったけどこの経験は今の生活にも活きてきている。&lt;/p&gt;
+
+&lt;p&gt;この時バージョン管理はGitになったし、Hamlを標準で使うようになったし、Hudson(現Jenkins)を導入した。&lt;/p&gt;
+
+&lt;h4 id=&#34;進化の速度&#34;&gt;進化の速度&lt;/h4&gt;
+
+&lt;p&gt;作ったプロダクトが基盤となって、いろんなプロダクトが生まれた。&lt;/p&gt;
+
+&lt;p&gt;当時の流行りは今の流行りじゃないことが多くて、そのまま利用されると少し恥ずかしさが残ってしまう。&lt;/p&gt;
+
+&lt;p&gt;ただ、進化が速いところはとても好きだ。&lt;/p&gt;
+
+&lt;p&gt;Ruby on RailsやWebはいつでもボクを挑戦者にしてくれる。&lt;/p&gt;
+
+&lt;p&gt;2ヶ月前のbetterは今のdefactだったり、オワコンだったりと怠けるとすぐに時代遅れになってしまう。&lt;/p&gt;
+
+&lt;p&gt;とても楽しい世界だ&lt;/p&gt;
+
+&lt;h4 id=&#34;楽をする&#34;&gt;楽をする&lt;/h4&gt;
+
+&lt;p&gt;人生は短い&lt;/p&gt;
+
+&lt;p&gt;自分のやりたいことをやるに人生は短すぎる。&lt;/p&gt;
+
+&lt;p&gt;ボクには面倒な作業で楽をするためのツールとしてRubyがいた&lt;/p&gt;
+
+&lt;p&gt;毎日5分かかってた作業が30秒で終わるようになったらそれはとても素晴らしいことで&lt;/p&gt;
+
+&lt;p&gt;素晴らしいことを大好きなRubyで行えるということはとても素晴らしいことだと思う。&lt;/p&gt;
+
+&lt;p&gt;毎日の退屈な5分間を無くすために、好きなエディタ、好きな言語で楽しくプログラミングをして、時間を使うのはとても有意義だ。&lt;/p&gt;
+
+&lt;p&gt;テスト用のアプリ、オレオレ７つ道具、Rubyで解決できる問題も手段もいっぱいある。&lt;/p&gt;
+
+&lt;h2 id=&#34;なぜrubyだったんだろう-まとめ&#34;&gt;なぜRubyだったんだろう まとめ&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;まとまらない&lt;/li&gt;
+&lt;li&gt;Ruby on Railsで社内でトップになれるんじゃないかという野望&lt;/li&gt;
+&lt;li&gt;Rubyを取り巻く環境が好き&lt;/li&gt;
+&lt;li&gt;Rubyを書いていると楽しい&lt;/li&gt;
+&lt;li&gt;継続は力なり&lt;/li&gt;
+&lt;li&gt;人生は短い!&lt;/li&gt;
+&lt;li&gt;これからもRubyと付き合って行きたい&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;全然まとまらなかった。&lt;/p&gt;
+
+&lt;p&gt;とりあえずこのへんで&lt;/p&gt;
+
+&lt;p&gt;押忍!!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hatena BlogをRSS登録</title>
+      <link>https://mitaku.github.io/blog/2013/03/17/hatena-blog-rss-feed/</link>
+      <pubDate>Sun, 17 Mar 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/03/17/hatena-blog-rss-feed/</guid>
+      <description>&lt;p&gt;Google Readerのサービス終了予告から、数日が経ちました。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;ボクも情報収集の起点には「Google Reader」がいて、
+1つの大きな穴が開いてしまった感覚に襲われた。&lt;/p&gt;
+
+&lt;p&gt;穴が開きっぱなしだとやっぱり困るので、&lt;/p&gt;
+
+&lt;p&gt;補修をすべく&lt;a href=&#34;http://feedspot.com/&#34;&gt;Feedspot&lt;/a&gt;というサービスを試している.&lt;/p&gt;
+
+&lt;p&gt;穴は当分埋めれなそうだけど&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;よい機会なのでRSSの整理を始めた。&lt;/p&gt;
+
+&lt;h3 id=&#34;本題&#34;&gt;本題&lt;/h3&gt;
+
+&lt;p&gt;はてなブログをRSS登録しようとしたら、ぱっとfeed飛ばしてそうなURLを見つけれなかったのでメモ&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http://XXXX.hatenablog.jp/feed&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;で良いみたい。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>高専カンファレンスin東京を開催した</title>
+      <link>https://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo/</link>
+      <pubDate>Thu, 03 May 2012 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo/</guid>
+      <description>&lt;p&gt;高専カンファレンスin東京を開催した&lt;/p&gt;
+
+&lt;p&gt;4月14日に&lt;a href=&#34;http://kc045tokyo.heroku.com&#34;&gt;高専カンファレンスin東京&lt;/a&gt;を開催した話&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;開催経緯&#34;&gt;開催経緯&lt;/h2&gt;
+
+&lt;p&gt;ボクは何をしたくて高専カンファレンスを開催したのだろう?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;テーマ『DISCOVERY』(発見)&lt;/li&gt;
+&lt;li&gt;全員発表&lt;/li&gt;
+&lt;li&gt;小規模開催&lt;/li&gt;
+&lt;li&gt;自己満足&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最初は新社会人とか居るだろうし、4月に開催できたら嬉しいなぁと思っていました。
+それは現実のモノになったし、ほとんど弊社の新社会人だったけれども個人的には目標を達成しました。
+// ただそれは開催の経緯ではなくてボク個人の願望 :)&lt;/p&gt;
+
+&lt;p&gt;全員発表という当初の目論見は良い方向でやぶれましたが
+多くの人の発表を聞きたい。それが今回の開催目的&lt;/p&gt;
+
+&lt;p&gt;「発表することにどんな意義が…」とか
+「発表することによって何が…」とか
+「発表を聞いたから何が…」っていう話は各個人の価値観なのでおいておいて&lt;/p&gt;
+
+&lt;p&gt;せっかく東京という人が多い環境にいるのだから、いろんな人の話を聞きたい、話をしたいってね!&lt;/p&gt;
+
+&lt;h2 id=&#34;掲げていたもの&#34;&gt;掲げていたもの&lt;/h2&gt;
+
+&lt;p&gt;テーマ『DISCOVERY』とは別に個人的にテーマを設けていました。
+そうですね、裏テーマ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;省エネ運営&lt;/li&gt;
+&lt;li&gt;kosenconf003tokyoの雰囲気を出したい&lt;/li&gt;
+&lt;li&gt;ボクはボクの高専カンファレンスをやる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;省エネ運営&#34;&gt;省エネ運営&lt;/h3&gt;
+
+&lt;p&gt;今回は本当にこれを考えてボクの高専カンファレンスをデザインしてました。
+どうやったら手軽に、よりよく出来るだろう…？
+手を抜きたいというわけではなく、必要と感じるものは手をかけるし、不要だと思ったものは必要になるまでやりませんでした。&lt;/p&gt;
+
+&lt;p&gt;個人的に極力やりたくなかったこととして以下のことがありました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メール送受信&lt;/li&gt;
+&lt;li&gt;発表者選定&lt;/li&gt;
+&lt;li&gt;過度なサービス&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;メールの送受信&#34;&gt;メールの送受信&lt;/h4&gt;
+
+&lt;p&gt;そうなんです、この面倒くさい作業
+発表申込とか、参加申込とか、資料送付とか…
+いいんです、そんなの（ぉぃ&lt;/p&gt;
+
+&lt;p&gt;結局開催に至るまで5通のメールしか送信しませんでした。 :)&lt;/p&gt;
+
+&lt;h4 id=&#34;発表者選定&#34;&gt;発表者選定&lt;/h4&gt;
+
+&lt;p&gt;これも面倒な作業ですね。
+「枠が溢れたから、選考します。」とか正直やりたくない。
+高専カンファレンスに反した発表とか、なにそれ？という話で
+そりゃあ公共風俗などなど気をつけなければならないものはあると思うけど、そんな発表する人いるの？
+ということで選定とかいいじゃん。めんどくさい(・へ・)&lt;/p&gt;
+
+&lt;h4 id=&#34;過度なサービス&#34;&gt;過度なサービス&lt;/h4&gt;
+
+&lt;p&gt;別に過度でもなんでもないかもしれないのですが
+開催に必須ではないものですね。
+もちろんあることによって満足度が高まる人もいると思うし、ないことによって少し困ってしまった人もいたかもしれないけど…&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Wi-Fi&lt;/li&gt;
+&lt;li&gt;マイク&lt;/li&gt;
+&lt;li&gt;配信&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ボク自身は配信をするつもりはあんまりなかったのだけど
+素敵なチームメンバーが引き受けてくれたので配信することができました。&lt;/p&gt;
+
+&lt;h3 id=&#34;kosenconf003tokyoの雰囲気&#34;&gt;kosenconf003tokyoの雰囲気&lt;/h3&gt;
+
+&lt;p&gt;これは本当に個人的なテーマでボクの人生が変わるきっかけになった高専カンファレンスなんだけど、この開催の雰囲気を出したかったのです。
+どんな会だったのかっていう話はさておき、
+@igaiga555さんや@earth2001yさんが003tokyoっぽかったって言ってくれていて本当に嬉しい。&lt;/p&gt;
+
+&lt;h3 id=&#34;ボクはボクの高専カンファレンスをする&#34;&gt;ボクはボクの高専カンファレンスをする&lt;/h3&gt;
+
+&lt;p&gt;そうなんです、この開催は自己満足なんです。
+ボクの高専カンファレンスに型は存在していなくて
+主催者が(いい意味で)好き勝手やるのが高専カンファレンスなんじゃないの?という心持ちです。&lt;/p&gt;
+
+&lt;p&gt;「あの開催ではこうだったのにこの開催はこれがないからダメだ。」
+別に言われてもいいけど、そこまで過度に求められても困ります←
+ボクの高専カンファレンスには&amp;rdquo;お客様&amp;rdquo;は存在しないので、
+よりよくする方向には持っていきますが利害や費用対効果をみて考えます。&lt;/p&gt;
+
+&lt;p&gt;今回申し込みサイトを作ったのですが、それもボクが怠け者なのであーいう形にしました。（バグいっぱいなの知ってるんだよ)
+これに関しては別に記事を書きたいな…&lt;/p&gt;
+
+&lt;p&gt;ボクの開催する高専カンファレンスは
+『場の空気を楽しんでほしい』という想いで動いています!&lt;/p&gt;
+
+&lt;h2 id=&#34;謝辞&#34;&gt;謝辞&lt;/h2&gt;
+
+&lt;p&gt;46人の仲間達とワイワイガヤガヤ楽しい時間を過ごせました。
+&lt;img src=&#34;http://farm8.staticflickr.com/7266/7080101361_d1ee23bf65_c.jpg&#34; alt=&#34;photo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当初の目的通り、多くの人の話を聞いて、多くの人と話せたことがとても幸せです。
+// 発表の途中途中で抜けてしまうことが多くちゃんと聞けなかった発表もあるのですが、とても楽しかったです。&lt;/p&gt;
+
+&lt;p&gt;会場を提供してくれた&lt;a href=&#34;http://optim.co.jp&#34;&gt;株式会社オプティム&lt;/a&gt;と省エネ運営でかなり足りない部分をカバーしてくれたチームのみんなに感謝をして、一旦kosenconf-045tokyoを終了したいなと思います。&lt;/p&gt;
+
+&lt;p&gt;ありがとうございましたっ&lt;/p&gt;
+
+&lt;p&gt;押忍!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

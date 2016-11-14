@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Rails on mitaku.log </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://mitaku.github.io/categories/rails/index.xml</link>
+    <language>ja</language>
+    <author>TakumiMIURA</author>
+    <copyright>© 2016 Copyright Takumi Miura</copyright>
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Rails4でのRSpec自動実行環境の作成</title>
+      <link>https://mitaku.github.io/blog/2013/07/10/rails4-testing-automation/</link>
+      <pubDate>Wed, 10 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/10/rails4-testing-automation/</guid>
+      <description>&lt;p&gt;Rails4アプリでファイルの変更を検知し、RSpecを実行するようにする。
+テストの結果はGrowlにて通知するようにする&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;環境&#34;&gt;環境&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.0.0&lt;/li&gt;
+&lt;li&gt;Rails 4.0.0&lt;/li&gt;
+&lt;li&gt;Mac OS X 10.8&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;利用するもの&#34;&gt;利用するもの&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rspec
+
+&lt;ul&gt;
+&lt;li&gt;BDDフレームワーク&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Guard
+
+&lt;ul&gt;
+&lt;li&gt;監視・実行の管理&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Growl
+
+&lt;ul&gt;
+&lt;li&gt;通知&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Spring
+
+&lt;ul&gt;
+&lt;li&gt;事前にアプリを立て、コマンドの実行を高速化する&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;準備&#34;&gt;準備&lt;/h2&gt;
+
+&lt;h3 id=&#34;gemfileの更新&#34;&gt;Gemfileの更新&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;group &lt;span style=&#34;color: #FFCC33&#34;&gt;:development&lt;/span&gt;, &lt;span style=&#34;color: #FFCC33&#34;&gt;:test&lt;/span&gt; &lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;do&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;rspec-rails&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;spring&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;guard&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;guard-rspec&amp;#39;&lt;/span&gt;
+  gem &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;growl&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #006699; font-weight: bold&#34;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;bundle install&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;rspec-install&#34;&gt;rspec:install&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;spring g rspec:install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;spec/spec_helper.rb&lt;/code&gt;などが作成される&lt;/p&gt;
+
+&lt;h3 id=&#34;guard-init&#34;&gt;guard init&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gurad init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Guardfile&lt;/code&gt;というGuardの設定を記述するファイルが生成される&lt;/p&gt;
+
+&lt;h3 id=&#34;guard-rspecでspringを使うようにする&#34;&gt;guard rspecでspringを使うようにする&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;guard :rspec do&lt;/code&gt;という記述を&lt;code&gt;guard :rspec, spring: true do&lt;/code&gt;に変更する
+これによってguardでrspecが動く場合にspringで立てたテスト用のプロセスで実行されるようになる&lt;/p&gt;
+
+&lt;p&gt;基本的に作業はこれだけ。
+あとはファイルを更新してテストが走ったり、通知がいくことを確認できれば問題なし。&lt;/p&gt;
+
+&lt;p&gt;かなり簡単に自動でテストが回る環境が作れた。
+無意識にテストが実行されフィードバックが返ってくるのはとてもよい。&lt;/p&gt;
+
+&lt;p&gt;Rails4が出たということで&lt;code&gt;database_cleaner&lt;/code&gt;を始め開発環境を再度整えて行きたい&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails4でアプリケーションを作る</title>
+      <link>https://mitaku.github.io/blog/2013/07/07/generate-rails4-app/</link>
+      <pubDate>Sun, 07 Jul 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/07/07/generate-rails4-app/</guid>
+      <description>&lt;p&gt;&lt;sup&gt;6&lt;/sup&gt;&amp;frasl;&lt;sub&gt;25&lt;/sub&gt; &lt;a href=&#34;http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/&#34;&gt;Rails4.0.0がリリース&lt;/a&gt;されました。&lt;/p&gt;
+
+&lt;p&gt;ということで早速Rails4でプロジェクトを作成。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.0.0-p247&lt;/li&gt;
+&lt;li&gt;Rails 4.0.0&lt;/li&gt;
+&lt;li&gt;Mac OS X 10.8.7&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rails
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;プロジェクトの作成&#34;&gt;プロジェクトの作成&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;rails new your_project_name -B -T -d mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;rails new後のbundle installがとても嫌いなのでskip-bundleをしたいので&lt;code&gt;-B&lt;/code&gt;オプションを付与&lt;/li&gt;
+&lt;li&gt;test-unitではなくRspecを使いたいので&lt;code&gt;-T&lt;/code&gt;でTest::Unitのファイルが作成されるのを回避&lt;/li&gt;
+&lt;li&gt;今回はDBをMySQLにしたかったので&lt;code&gt;-d mysql&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;デフォルトはsqlite3&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;tree&#34;&gt;tree&lt;/h3&gt;
+
+&lt;p&gt;作られたファイルの確認&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.
+├── Gemfile
+├── README.rdoc
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── images
+│   │   ├── javascripts
+│   │   │   └── application.js
+│   │   └── stylesheets
+│   │       └── application.css
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   └── concerns
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── mailers
+│   ├── models
+│   │   └── concerns
+│   └── views
+│       └── layouts
+│           └── application.html.erb
+├── bin
+│   ├── bundle
+│   ├── rails
+│   └── rake
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── backtrace_silencers.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── mime_types.rb
+│   │   ├── secret_token.rb
+│   │   ├── session_store.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   └── en.yml
+│   └── routes.rb
+├── config.ru
+├── db
+│   └── seeds.rb
+├── lib
+│   ├── assets
+│   └── tasks
+├── log
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── favicon.ico
+│   └── robots.txt
+├── tmp
+│   └── cache
+│       └── assets
+└── vendor
+    └── assets
+        ├── javascripts
+        └── stylesheets
+
+31 directories, 34 files
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;binやapp/models/concernsなどが増えていますね!&lt;/p&gt;
+
+&lt;h2 id=&#34;rspec-railsの導入&#34;&gt;rspec-railsの導入&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/rspec/rspec-rails&#34;&gt;rspec/rspec-rails&lt;/a&gt;に従って&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Gemfileに追加
+group :development, :test do
+  gem &#39;rspec-rails&#39;, &#39;~&amp;gt; 2.0&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;rails g rspec:install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;db-create&#34;&gt;db:create&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;rake db:crate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;server-start&#34;&gt;server start&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;rails s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;そんな訳でとりあえず起動した。&lt;/p&gt;
+
+&lt;p&gt;rspecのくだりは別にいらなかったね。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Event on mitaku.log </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://mitaku.github.io/categories/event/index.xml</link>
+    <language>ja</language>
+    <author>TakumiMIURA</author>
+    <copyright>© 2016 Copyright Takumi Miura</copyright>
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Rails寺子屋 x kosenconfを開催した</title>
+      <link>https://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/</link>
+      <pubDate>Wed, 27 Mar 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/</guid>
+      <description>&lt;p&gt;2013/03/23に&lt;a href=&#34;http://rails.terakoya.io/&#34;&gt;Rails寺子屋&lt;/a&gt;というイベントを開催し、講師という立場で参加した。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;午前10時という時間から開始ということで、寝坊だったり、遠方からの参加者は朝から東京に投げ出され大変そうだった印象。&lt;/p&gt;
+
+&lt;p&gt;あと、鉄道のICカード統一で駅が大変なことになっていた。速い人は5時くらいから並んでいるとか…&lt;/p&gt;
+
+&lt;p&gt;さて、寺子屋ですが&lt;/p&gt;
+
+&lt;p&gt;@RooandQoo ちゃんと一緒に1グループ担当しました。この日のために服装を揃えました（嘘です）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.flickr.com/photos/sora_h/8583674262/&#34; title=&#34;P3233335 by sora_h, on Flickr&#34;&gt;&lt;img src=&#34;http://farm9.staticflickr.com/8509/8583674262_aab196bc06_z.jpg&#34; width=&#34;640&#34; height=&#34;480&#34; alt=&#34;P3233335&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;午前&#34;&gt;午前&lt;/h3&gt;
+
+&lt;p&gt;午前中は環境構築をする時間として設けていて環境構築をしつつ、終わったメンバーと対談したりRubyで簡単なプログラムを書いてみたりしてました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RubyでFizzBuzzしてみたり&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336666&#34;&gt;puts&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;times&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;map { &lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt;i&lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt; (s &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; ((i &lt;span style=&#34;color: #555555&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;3&lt;/span&gt;)&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;zero? ? &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;Fizz&amp;#39;&lt;/span&gt; : &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #555555&#34;&gt;+&lt;/span&gt; ((i &lt;span style=&#34;color: #555555&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;5&lt;/span&gt;)&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;zero? ? &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;Buzz&amp;#39;&lt;/span&gt; : &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;))&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;empty? ? i : s }
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;与えた文字をランダムで利用して140文字の文字列を作る遊びなど (下の例ではsを与える文字にしてます)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;s &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;みうらたくみ&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #336666&#34;&gt;puts&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;140&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;times&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;map { s&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;chars&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;sample }&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;join
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;午後&#34;&gt;午後&lt;/h3&gt;
+
+&lt;p&gt;ワークショップのメインということでRailsを使って簡単なアプリケーションを作ってみようというコーナーでした
+ここでは&lt;a href=&#34;http://railsgirls-jp.github.com/&#34;&gt;Rails Girls&lt;/a&gt;というイベントの教材を使って、&lt;a href=&#34;http://www.heroku.com/&#34;&gt;Heroku&lt;/a&gt;にアプリケーションをデプロイするところまでやりました。&lt;/p&gt;
+
+&lt;p&gt;まずは、この教材の出来がとてもよい。&lt;/p&gt;
+
+&lt;p&gt;反日でRailsアプリを1つ作り、Herokuにデプロイし1サービスの提供者になれる。&lt;/p&gt;
+
+&lt;p&gt;基本的に教材にそってやっていき、都度必要な説明を講師陣で加えていくという形で行なって行きました。&lt;/p&gt;
+
+&lt;p&gt;無事全員がHerokuにデプロイするところまで行きました。素敵&lt;/p&gt;
+
+&lt;h3 id=&#34;懇親会&#34;&gt;懇親会&lt;/h3&gt;
+
+&lt;p&gt;みんなでピザを頬張り、ワイワイしてました。&lt;/p&gt;
+
+&lt;h3 id=&#34;感想&#34;&gt;感想&lt;/h3&gt;
+
+&lt;p&gt;Rails Girlsの教材はとてもよい。&lt;/p&gt;
+
+&lt;p&gt;Railsの手軽さは体験してもらうことはできたと思う。&lt;/p&gt;
+
+&lt;p&gt;ただし、学習コストが高いRailsなのでアフターサポート的なものがあるとよいのかなぁと思いました。&lt;/p&gt;
+
+&lt;p&gt;気軽に&lt;a href=&#34;https://twitter.com/mitaku&#34;&gt;@mitaku&lt;/a&gt;までどうぞ！&lt;/p&gt;
+
+&lt;p&gt;参加者のみなさん、講師の皆さん、たくさんの関係者のみなさんありがとうございました！&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;楽しいRailsライフを!!&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>高専カンファレンスin東京を開催した</title>
+      <link>https://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo/</link>
+      <pubDate>Thu, 03 May 2012 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2012/05/03/held-the-kosenconf-045tokyo/</guid>
+      <description>&lt;p&gt;高専カンファレンスin東京を開催した&lt;/p&gt;
+
+&lt;p&gt;4月14日に&lt;a href=&#34;http://kc045tokyo.heroku.com&#34;&gt;高専カンファレンスin東京&lt;/a&gt;を開催した話&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;開催経緯&#34;&gt;開催経緯&lt;/h2&gt;
+
+&lt;p&gt;ボクは何をしたくて高専カンファレンスを開催したのだろう?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;テーマ『DISCOVERY』(発見)&lt;/li&gt;
+&lt;li&gt;全員発表&lt;/li&gt;
+&lt;li&gt;小規模開催&lt;/li&gt;
+&lt;li&gt;自己満足&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最初は新社会人とか居るだろうし、4月に開催できたら嬉しいなぁと思っていました。
+それは現実のモノになったし、ほとんど弊社の新社会人だったけれども個人的には目標を達成しました。
+// ただそれは開催の経緯ではなくてボク個人の願望 :)&lt;/p&gt;
+
+&lt;p&gt;全員発表という当初の目論見は良い方向でやぶれましたが
+多くの人の発表を聞きたい。それが今回の開催目的&lt;/p&gt;
+
+&lt;p&gt;「発表することにどんな意義が…」とか
+「発表することによって何が…」とか
+「発表を聞いたから何が…」っていう話は各個人の価値観なのでおいておいて&lt;/p&gt;
+
+&lt;p&gt;せっかく東京という人が多い環境にいるのだから、いろんな人の話を聞きたい、話をしたいってね!&lt;/p&gt;
+
+&lt;h2 id=&#34;掲げていたもの&#34;&gt;掲げていたもの&lt;/h2&gt;
+
+&lt;p&gt;テーマ『DISCOVERY』とは別に個人的にテーマを設けていました。
+そうですね、裏テーマ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;省エネ運営&lt;/li&gt;
+&lt;li&gt;kosenconf003tokyoの雰囲気を出したい&lt;/li&gt;
+&lt;li&gt;ボクはボクの高専カンファレンスをやる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;省エネ運営&#34;&gt;省エネ運営&lt;/h3&gt;
+
+&lt;p&gt;今回は本当にこれを考えてボクの高専カンファレンスをデザインしてました。
+どうやったら手軽に、よりよく出来るだろう…？
+手を抜きたいというわけではなく、必要と感じるものは手をかけるし、不要だと思ったものは必要になるまでやりませんでした。&lt;/p&gt;
+
+&lt;p&gt;個人的に極力やりたくなかったこととして以下のことがありました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メール送受信&lt;/li&gt;
+&lt;li&gt;発表者選定&lt;/li&gt;
+&lt;li&gt;過度なサービス&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;メールの送受信&#34;&gt;メールの送受信&lt;/h4&gt;
+
+&lt;p&gt;そうなんです、この面倒くさい作業
+発表申込とか、参加申込とか、資料送付とか…
+いいんです、そんなの（ぉぃ&lt;/p&gt;
+
+&lt;p&gt;結局開催に至るまで5通のメールしか送信しませんでした。 :)&lt;/p&gt;
+
+&lt;h4 id=&#34;発表者選定&#34;&gt;発表者選定&lt;/h4&gt;
+
+&lt;p&gt;これも面倒な作業ですね。
+「枠が溢れたから、選考します。」とか正直やりたくない。
+高専カンファレンスに反した発表とか、なにそれ？という話で
+そりゃあ公共風俗などなど気をつけなければならないものはあると思うけど、そんな発表する人いるの？
+ということで選定とかいいじゃん。めんどくさい(・へ・)&lt;/p&gt;
+
+&lt;h4 id=&#34;過度なサービス&#34;&gt;過度なサービス&lt;/h4&gt;
+
+&lt;p&gt;別に過度でもなんでもないかもしれないのですが
+開催に必須ではないものですね。
+もちろんあることによって満足度が高まる人もいると思うし、ないことによって少し困ってしまった人もいたかもしれないけど…&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Wi-Fi&lt;/li&gt;
+&lt;li&gt;マイク&lt;/li&gt;
+&lt;li&gt;配信&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ボク自身は配信をするつもりはあんまりなかったのだけど
+素敵なチームメンバーが引き受けてくれたので配信することができました。&lt;/p&gt;
+
+&lt;h3 id=&#34;kosenconf003tokyoの雰囲気&#34;&gt;kosenconf003tokyoの雰囲気&lt;/h3&gt;
+
+&lt;p&gt;これは本当に個人的なテーマでボクの人生が変わるきっかけになった高専カンファレンスなんだけど、この開催の雰囲気を出したかったのです。
+どんな会だったのかっていう話はさておき、
+@igaiga555さんや@earth2001yさんが003tokyoっぽかったって言ってくれていて本当に嬉しい。&lt;/p&gt;
+
+&lt;h3 id=&#34;ボクはボクの高専カンファレンスをする&#34;&gt;ボクはボクの高専カンファレンスをする&lt;/h3&gt;
+
+&lt;p&gt;そうなんです、この開催は自己満足なんです。
+ボクの高専カンファレンスに型は存在していなくて
+主催者が(いい意味で)好き勝手やるのが高専カンファレンスなんじゃないの?という心持ちです。&lt;/p&gt;
+
+&lt;p&gt;「あの開催ではこうだったのにこの開催はこれがないからダメだ。」
+別に言われてもいいけど、そこまで過度に求められても困ります←
+ボクの高専カンファレンスには&amp;rdquo;お客様&amp;rdquo;は存在しないので、
+よりよくする方向には持っていきますが利害や費用対効果をみて考えます。&lt;/p&gt;
+
+&lt;p&gt;今回申し込みサイトを作ったのですが、それもボクが怠け者なのであーいう形にしました。（バグいっぱいなの知ってるんだよ)
+これに関しては別に記事を書きたいな…&lt;/p&gt;
+
+&lt;p&gt;ボクの開催する高専カンファレンスは
+『場の空気を楽しんでほしい』という想いで動いています!&lt;/p&gt;
+
+&lt;h2 id=&#34;謝辞&#34;&gt;謝辞&lt;/h2&gt;
+
+&lt;p&gt;46人の仲間達とワイワイガヤガヤ楽しい時間を過ごせました。
+&lt;img src=&#34;http://farm8.staticflickr.com/7266/7080101361_d1ee23bf65_c.jpg&#34; alt=&#34;photo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当初の目的通り、多くの人の話を聞いて、多くの人と話せたことがとても幸せです。
+// 発表の途中途中で抜けてしまうことが多くちゃんと聞けなかった発表もあるのですが、とても楽しかったです。&lt;/p&gt;
+
+&lt;p&gt;会場を提供してくれた&lt;a href=&#34;http://optim.co.jp&#34;&gt;株式会社オプティム&lt;/a&gt;と省エネ運営でかなり足りない部分をカバーしてくれたチームのみんなに感謝をして、一旦kosenconf-045tokyoを終了したいなと思います。&lt;/p&gt;
+
+&lt;p&gt;ありがとうございましたっ&lt;/p&gt;
+
+&lt;p&gt;押忍!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

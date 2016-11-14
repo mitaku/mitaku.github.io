@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Kosenconf on mitaku.log </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://mitaku.github.io/categories/kosenconf/index.xml</link>
+    <language>ja</language>
+    <author>TakumiMIURA</author>
+    <copyright>© 2016 Copyright Takumi Miura</copyright>
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>高専カンファレンス5周年記念パーティー</title>
+      <link>https://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary/</link>
+      <pubDate>Thu, 27 Jun 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/06/27/present-kosenconf-5th-anniversary/</guid>
+      <description>&lt;p&gt;6/15に行われた高専カンファレンス5周年記念パーティーに参加してきた。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;高専カンファレンスで人生を(良い意味で)狂わされた自分自身としては、5周年というのはとても感慨深いものがあるなぁと老害オーラを出していた。&lt;/p&gt;
+
+&lt;p&gt;なんだかんだでいつも発表したり運営側にいるので、今回は1パーティーの参加者としておとなしくしていようと思ったのだが、なんというか会場の空気にやられて飛び入りLTをさせていただいた。（運営のみなさん、ありがとうございました）&lt;/p&gt;
+
+&lt;h2 id=&#34;心地良い空気&#34;&gt;心地良い空気&lt;/h2&gt;
+
+&lt;p&gt;全然準備できなかったので、ネタもなにもないし、〆方も失敗した。&lt;/p&gt;
+
+&lt;p&gt;伝えたかったのは「空気」の話&lt;/p&gt;
+
+&lt;p&gt;高専カンファレンスに限った話じゃないが、いろんなイベントやいろんなコミュニティがあって、そこには様々な雰囲気があって、多くの楽しさや、問題があると思う。&lt;/p&gt;
+
+&lt;p&gt;僕はあの空気が好きだし、バカみたいなことをしているのを見ていてもそれなりに楽しい。&lt;/p&gt;
+
+&lt;p&gt;あの場には多くのエンターテイナーがいてコンテンツが充実していて楽しい。&lt;/p&gt;
+
+&lt;p&gt;ネットワーク職人だったり、配信職人もいるためUstreamで配信を見ていれば十分楽しいというのもわかる。&lt;/p&gt;
+
+&lt;p&gt;でも、Ustreamじゃ空気が伝わらない。&lt;/p&gt;
+
+&lt;p&gt;参加してみないと分からないものがあるから、試しに1度参加してみてもらいたい。&lt;/p&gt;
+
+&lt;p&gt;「高専カンファレンスに参加しにくい。」というのもわかる。&lt;/p&gt;
+
+&lt;p&gt;誰も知らない、何も知らない状態で参加しようとするのは勇気がいるなぁと思う。&lt;/p&gt;
+
+&lt;p&gt;それだけ、高専カンファレンスは浸透してきているし、複数回参加したことがある人が増えたり、TwitterやFacebookを始めとして参加者間でコミュニケーションが取られているのが事実としてあるので、内輪感が出てしまう。&lt;/p&gt;
+
+&lt;p&gt;(内輪感がないメジャーな勉強会をそんなに知らないので高専カンファレンス特有かはわからないが)&lt;/p&gt;
+
+&lt;p&gt;でも、あのコミュニティは暖かいから、ぜひ参加してみてほしい。&lt;/p&gt;
+
+&lt;p&gt;その上で、あの空気が好きだったら、ぜひ作る側になってほしい。&lt;/p&gt;
+
+&lt;p&gt;内輪感を作るなというのも難しい話だから、そこはできてしまうものとして考えた上で、初めて参加してくれる人への配慮を&lt;strong&gt;運営を含めた参加者&lt;/strong&gt;ができるととても素敵だなぁと思う。&lt;/p&gt;
+
+&lt;h2 id=&#34;さいごに&#34;&gt;さいごに&lt;/h2&gt;
+
+&lt;p&gt;運営のみなさん、会場を提供していただいたVOYAGE GROUPさん、参加者のみなさん&lt;/p&gt;
+
+&lt;p&gt;素敵な空気と時間をありがとうございました。とても楽しかったです。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Happy anniversary!&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails寺子屋 x kosenconfを開催した</title>
+      <link>https://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/</link>
+      <pubDate>Wed, 27 Mar 2013 00:00:00 UTC</pubDate>
+      <author>TakumiMIURA</author>
+      <guid>https://mitaku.github.io/blog/2013/03/27/rails-terakoya-kosenconf/</guid>
+      <description>&lt;p&gt;2013/03/23に&lt;a href=&#34;http://rails.terakoya.io/&#34;&gt;Rails寺子屋&lt;/a&gt;というイベントを開催し、講師という立場で参加した。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;午前10時という時間から開始ということで、寝坊だったり、遠方からの参加者は朝から東京に投げ出され大変そうだった印象。&lt;/p&gt;
+
+&lt;p&gt;あと、鉄道のICカード統一で駅が大変なことになっていた。速い人は5時くらいから並んでいるとか…&lt;/p&gt;
+
+&lt;p&gt;さて、寺子屋ですが&lt;/p&gt;
+
+&lt;p&gt;@RooandQoo ちゃんと一緒に1グループ担当しました。この日のために服装を揃えました（嘘です）&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.flickr.com/photos/sora_h/8583674262/&#34; title=&#34;P3233335 by sora_h, on Flickr&#34;&gt;&lt;img src=&#34;http://farm9.staticflickr.com/8509/8583674262_aab196bc06_z.jpg&#34; width=&#34;640&#34; height=&#34;480&#34; alt=&#34;P3233335&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;午前&#34;&gt;午前&lt;/h3&gt;
+
+&lt;p&gt;午前中は環境構築をする時間として設けていて環境構築をしつつ、終わったメンバーと対談したりRubyで簡単なプログラムを書いてみたりしてました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RubyでFizzBuzzしてみたり&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336666&#34;&gt;puts&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;times&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;map { &lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt;i&lt;span style=&#34;color: #555555&#34;&gt;|&lt;/span&gt; (s &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; ((i &lt;span style=&#34;color: #555555&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;3&lt;/span&gt;)&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;zero? ? &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;Fizz&amp;#39;&lt;/span&gt; : &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #555555&#34;&gt;+&lt;/span&gt; ((i &lt;span style=&#34;color: #555555&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;5&lt;/span&gt;)&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;zero? ? &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;Buzz&amp;#39;&lt;/span&gt; : &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;))&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;empty? ? i : s }
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;与えた文字をランダムで利用して140文字の文字列を作る遊びなど (下の例ではsを与える文字にしてます)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f3f3&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;s &lt;span style=&#34;color: #555555&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #CC3300&#34;&gt;&amp;quot;みうらたくみ&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #336666&#34;&gt;puts&lt;/span&gt; &lt;span style=&#34;color: #FF6600&#34;&gt;140&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;times&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;map { s&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;chars&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;sample }&lt;span style=&#34;color: #555555&#34;&gt;.&lt;/span&gt;join
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;午後&#34;&gt;午後&lt;/h3&gt;
+
+&lt;p&gt;ワークショップのメインということでRailsを使って簡単なアプリケーションを作ってみようというコーナーでした
+ここでは&lt;a href=&#34;http://railsgirls-jp.github.com/&#34;&gt;Rails Girls&lt;/a&gt;というイベントの教材を使って、&lt;a href=&#34;http://www.heroku.com/&#34;&gt;Heroku&lt;/a&gt;にアプリケーションをデプロイするところまでやりました。&lt;/p&gt;
+
+&lt;p&gt;まずは、この教材の出来がとてもよい。&lt;/p&gt;
+
+&lt;p&gt;反日でRailsアプリを1つ作り、Herokuにデプロイし1サービスの提供者になれる。&lt;/p&gt;
+
+&lt;p&gt;基本的に教材にそってやっていき、都度必要な説明を講師陣で加えていくという形で行なって行きました。&lt;/p&gt;
+
+&lt;p&gt;無事全員がHerokuにデプロイするところまで行きました。素敵&lt;/p&gt;
+
+&lt;h3 id=&#34;懇親会&#34;&gt;懇親会&lt;/h3&gt;
+
+&lt;p&gt;みんなでピザを頬張り、ワイワイしてました。&lt;/p&gt;
+
+&lt;h3 id=&#34;感想&#34;&gt;感想&lt;/h3&gt;
+
+&lt;p&gt;Rails Girlsの教材はとてもよい。&lt;/p&gt;
+
+&lt;p&gt;Railsの手軽さは体験してもらうことはできたと思う。&lt;/p&gt;
+
+&lt;p&gt;ただし、学習コストが高いRailsなのでアフターサポート的なものがあるとよいのかなぁと思いました。&lt;/p&gt;
+
+&lt;p&gt;気軽に&lt;a href=&#34;https://twitter.com/mitaku&#34;&gt;@mitaku&lt;/a&gt;までどうぞ！&lt;/p&gt;
+
+&lt;p&gt;参加者のみなさん、講師の皆さん、たくさんの関係者のみなさんありがとうございました！&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;楽しいRailsライフを!!&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

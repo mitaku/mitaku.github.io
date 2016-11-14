@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<title>Rails4でアプリケーションを作る - mitaku.log</title>
+	<meta name="author" content="map[name:TakumiMIURA email:mitaku1104@gmail.com]">
+
+	
+	
+	<meta name="description" content="">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='/index.xml' rel="alternate" title="mitaku.log" type="application/atom+xml">
+	
+	<link rel="canonical" href="https://mitaku.github.io/blog/2013/07/07/generate-rails4-app/">
+	<link href="https://mitaku.github.io/favicon.png" rel="shortcut icon">
+	<link href="https://mitaku.github.io/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://mitaku.github.io/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-71754208-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	<script src="https://mitaku.github.io/js/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5('mitaku1104@gmail.com') + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Blog</a></li>
+    <li><a href="http://about.me/shashankmehta">About</a></li>
+    <li><a href="/post/">Archives</a></li>
+</ul>
+
+<section class="aboutme">
+  <p>
+    mitaku blog
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href='mailto:mitaku1104@gmail.com' title="Email">Email</a>
+		
+		
+		
+		
+			<a class="twitter" href='http://twitter.com/mitaku' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/mitaku' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Rails4でアプリケーションを作る</h1>
+	<div class="entry-content" itemprop="articleBody"><p><sup>6</sup>&frasl;<sub>25</sub> <a href="http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/">Rails4.0.0がリリース</a>されました。</p>
+
+<p>ということで早速Rails4でプロジェクトを作成。</p>
+
+<p></p>
+
+<ul>
+<li>Ruby 2.0.0-p247</li>
+<li>Rails 4.0.0</li>
+<li>Mac OS X 10.8.7</li>
+</ul>
+
+<pre><code>gem install rails
+</code></pre>
+
+<h2 id="プロジェクトの作成">プロジェクトの作成</h2>
+
+<pre><code>rails new your_project_name -B -T -d mysql
+</code></pre>
+
+<ul>
+<li>rails new後のbundle installがとても嫌いなのでskip-bundleをしたいので<code>-B</code>オプションを付与</li>
+<li>test-unitではなくRspecを使いたいので<code>-T</code>でTest::Unitのファイルが作成されるのを回避</li>
+<li>今回はDBをMySQLにしたかったので<code>-d mysql</code>
+
+<ul>
+<li>デフォルトはsqlite3</li>
+</ul></li>
+</ul>
+
+<h3 id="tree">tree</h3>
+
+<p>作られたファイルの確認</p>
+
+<pre><code>.
+├── Gemfile
+├── README.rdoc
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── images
+│   │   ├── javascripts
+│   │   │   └── application.js
+│   │   └── stylesheets
+│   │       └── application.css
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   └── concerns
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── mailers
+│   ├── models
+│   │   └── concerns
+│   └── views
+│       └── layouts
+│           └── application.html.erb
+├── bin
+│   ├── bundle
+│   ├── rails
+│   └── rake
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── backtrace_silencers.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── mime_types.rb
+│   │   ├── secret_token.rb
+│   │   ├── session_store.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   └── en.yml
+│   └── routes.rb
+├── config.ru
+├── db
+│   └── seeds.rb
+├── lib
+│   ├── assets
+│   └── tasks
+├── log
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── favicon.ico
+│   └── robots.txt
+├── tmp
+│   └── cache
+│       └── assets
+└── vendor
+    └── assets
+        ├── javascripts
+        └── stylesheets
+
+31 directories, 34 files
+</code></pre>
+
+<p>binやapp/models/concernsなどが増えていますね!</p>
+
+<h2 id="rspec-railsの導入">rspec-railsの導入</h2>
+
+<p><a href="https://github.com/rspec/rspec-rails">rspec/rspec-rails</a>に従って</p>
+
+<pre><code># Gemfileに追加
+group :development, :test do
+  gem 'rspec-rails', '~&gt; 2.0'
+end
+</code></pre>
+
+<pre><code>bundle
+</code></pre>
+
+<pre><code>rails g rspec:install
+</code></pre>
+
+<h2 id="db-create">db:create</h2>
+
+<pre><code>rake db:crate
+</code></pre>
+
+<h2 id="server-start">server start</h2>
+
+<pre><code>rails s
+</code></pre>
+
+<p>そんな訳でとりあえず起動した。</p>
+
+<p>rspecのくだりは別にいらなかったね。</p></div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					
+
+
+				    </div>
+				</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2016
+
+    TakumiMIURA
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="https://mitaku.github.io/js/slash.js"></script>
+<script src="https://mitaku.github.io/js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script></footer>
+		</div>
+	</div>
+	
+</body>
+</html>
